@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Traqfood</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Barre du haut avec la bande bleue -->
+    <header class="top-header">
+        <!-- Bouton retour -->
+        <button class="back-button">←</button>
+
+        <!-- Texte "Traçabilités" -->
+        <h1 class="title">Traçabilités</h1>
+
+        <!-- Logo Connexion -->
+        <img src="wifi-transparent-1371033_640.webp" alt="Connexion" class="header-icon">
+
+        <!-- Logo Compte -->
+        <img src="unnamed.png" alt="Compte" class="header-icon">
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="main">
+        <!-- Section Numérisation avec le logo aide et le trait en dessous -->
+        <div class="sync-section">
+            <h2 class="sync-title">Numérisation des étiquettes</h2>
+            <img src="3840674.png" alt="Aide" class="help-icon">
+        </div>
+        <!-- Trait horizontal sous la section -->
+        <hr class="separator">
+
+        <!-- Grille des modules -->
+        <div class="modules">
+            <!-- Module Plan de nettoyage (Traçabilité simplifiée) -->
+            <div class="module plan-nettoyage" onclick="window.location.href='traca.html'">
+                <img src="IMG_3539.jpeg" alt="Plan de nettoyage" class="module-icon">
+                <p>Traçabilité simplifiée</p>
+            </div>
+
+            <!-- Module Checklist (Traçabilité détaillée) -->
+            <div class="module checklist" onclick="window.location.href='oo.html'">
+                <img src="IMG_3539.jpeg" alt="Checklist" class="module-icon">
+                <p>Traçabilité détaillée</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script JavaScript pour le bouton retour -->
+    <script>
+        // Fonction pour revenir à la page précédente
+        document.querySelector('.back-button').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+
+</body>
+</html>

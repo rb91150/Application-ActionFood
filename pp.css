@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.date-section, .photo-section {
+    margin: 20px 0;
+}
+
+#product-date {
+    font-size: 16px;
+    padding: 5px;
+    width: 150px;
+}
+
+#take-photo-btn, #retake-photo-btn, #confirm-photo-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#take-photo-btn:hover, #retake-photo-btn:hover, #confirm-photo-btn:hover {
+    background-color: #45a049;
+}
+
+#photo-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#photo {
+    max-width: 100%;
+    margin-top: 20px;
+    border: 2px solid #333;
+    display: none;
+}
+
+#photo-feedback {
+    margin-top: 20px;
+}
+
+#photo-counter {
+    margin-top: 20px;
+    font-size: 18px;
+}

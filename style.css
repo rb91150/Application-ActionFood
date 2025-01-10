@@ -1,0 +1,155 @@
+/* Style pour la bande bleue en haut */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007BFF; /* Couleur bleue */
+    padding: 10px 20px;
+    color: white;
+}
+
+.back-button {
+    background-color: transparent;
+    border: none;
+    color: rgb(254, 254, 254);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.title {
+    font-size: 30px;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-icon {
+    width: 50px;
+    height: 30px;
+    margin-left: 15px; /* Espacement entre les icônes */
+    cursor: pointer;
+}
+
+.header-icon:hover {
+    opacity: 0.8; /* Effet au survol des icônes */
+}
+
+/* Style pour la section Numérisation des étiquettes */
+.sync-section {
+    display: flex;
+    justify-content: space-between; /* Espacer le texte à gauche et l'icône à droite */
+    align-items: center; /* Centrer verticalement les éléments */
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.sync-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    flex-grow: 1; /* Permet au texte de s'étirer et prendre toute la place à gauche */
+}
+
+.help-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.help-icon:hover {
+    opacity: 0.8;
+}
+
+/* Trait horizontal sous la section */
+.separator {
+    border: 0;
+    border-top: 2px solid #000; /* Couleur du trait : noir */
+    margin-top: 10px;
+}
+
+/* Style pour le reste de la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    padding-top: 60px; /* Pour ne pas que le contenu soit caché derrière la barre bleue */
+}
+
+.modules {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Une seule colonne */
+    gap: 15px;
+    padding: 20px;
+}
+
+.module {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: 0.3s;
+    max-width: 700px; /* Limite la largeur maximale à 300px */
+    margin: 0 auto; /* Centre les modules */
+}
+
+.module:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.module-icon {
+    width: 700px;
+    height: 70px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+/* Barre de navigation en bas */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.nav-item:hover {
+    font-weight: bold;
+}
+
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+/* Espace supplémentaire pour éviter le chevauchement */
+main {
+    padding-bottom: 80px; /* L'espace en bas est ajusté pour laisser de la place pour la barre */
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traçabilité Simplifiée</title>
+    <link rel="stylesheet" href="pp.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Traçabilité Simplifiée</h1>
+
+        <!-- Champ de Date -->
+        <div class="date-section">
+            <label for="product-date">Produit ouvert le :</label>
+            <input type="date" id="product-date">
+        </div>
+
+        <!-- Onglet Photo -->
+        <div class="photo-section">
+            <h2>Onglet Photo</h2>
+            <button id="take-photo-btn">Prendre une photo</button>
+            <div id="photo-container">
+                <!-- Photo capturée sera affichée ici -->
+                <canvas id="canvas"></canvas>
+                <img id="photo" alt="Votre photo" />
+            </div>
+            <div id="photo-feedback">
+                <p id="feedback-text"></p>
+                <button id="retake-photo-btn" style="display:none;">Réessayer</button>
+                <button id="confirm-photo-btn" style="display:none;">Confirmer la photo</button>
+            </div>
+            <div id="photo-counter">
+                <p>Photos prises: <span id="photo-count">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="rr.js"></script>
+</body>
+
+</html>

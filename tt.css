@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 60%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+    text-align: left;  /* Aligner le texte à gauche */
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+/* Alignement des sections à gauche */
+.product-opened, .service-section {
+    text-align: left;  /* Aligner le texte des sections à gauche */
+    margin-bottom: 20px;
+}
+
+.product-opened label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-opened input {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.service-section {
+    text-align: left;
+}
+
+/* Organisation des boutons de service */
+.service-buttons {
+    display: flex;
+    flex-wrap: wrap;  /* Permet aux boutons de se déplacer sur plusieurs lignes si nécessaire */
+    gap: 15px;  /* Espacement entre les boutons */
+    margin-top: 10px;
+    justify-content: flex-start; /* Aligner à gauche */
+}
+
+.service-buttons .button {
+    background-color: white; /* Boutons blancs par défaut */
+    color: #333;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    font-size: 18px;
+    text-align: center;
+    border: 2px solid #ccc; /* Bordure grise claire */
+    min-width: 150px;  /* Largeur minimale des boutons */
+    flex: 1 0 150px; /* Chaque bouton peut se redimensionner mais prend au moins 150px */
+}
+
+/* Masquer les boutons radio */
+.service-buttons input[type="radio"] {
+    display: none;
+}
+
+/* Changer la couleur de fond et du texte quand le bouton est sélectionné */
+.service-buttons input[type="radio"]:checked + .button {
+    background-color: #2196F3; /* Bleu lorsque sélectionné */
+    color: white; /* Texte blanc lorsque sélectionné */
+    border-color: #1976D2; /* Bordure bleue quand sélectionné */
+}
+
+/* Légère couleur de survol */
+.service-buttons .button:hover {
+    background-color: #f0f0f0; /* Couleur de survol */
+}
+
+/* Si vous avez des lignes avec un nombre de boutons spécifique, vous pouvez utiliser des classes personnalisées pour gérer cela */
+.service-buttons .row {
+    display: flex;
+    gap: 15px;
+    width: 100%;  /* Assurez-vous que la ligne occupe toute la largeur */
+}
+
+.service-buttons .row > .button {
+    flex: 1;  /* Chaque bouton prendra la même largeur */
+}
+
+/* Assurez-vous que les lignes ne se chevauchent pas */
+.service-buttons .row-2 {
+    margin-top: 20px;
+    width: 100%; /* Forcer la ligne à occuper toute la largeur */
+}
