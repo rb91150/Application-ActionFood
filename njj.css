@@ -1,110 +1,233 @@
 body {
+
     font-family: Arial, sans-serif;
+
     margin: 0;
+
     padding: 0;
+
     background-color: #f9f9f9;
+
 }
 
-/* En-tête */
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    text-align: center;
-}
 
-.top-bar {
-    display: flex;
-    justify-content: center;
-    font-size: 14px;
-}
 
 /* Section de bienvenue */
+
 .welcome-section {
+
     text-align: center;
+
     padding: 20px;
+
     background-color: #eef7ff;
+
 }
+
+
 
 .welcome-section h1 {
+
     margin: 0;
+
     color: #007bff;
+
 }
+
+
 
 .sync-status {
+
     color: green;
+
     font-size: 14px;
+
 }
+
+
 
 /* Grille des modules */
+
 .modules {
+
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
+
     gap: 15px;
+
     padding: 20px;
+
 }
+
+
 
 .module {
+
     background-color: white;
+
     border-radius: 8px;
+
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
     text-align: center;
+
     padding: 20px;
+
     font-size: 16px;
+
     font-weight: bold;
+
     color: #333;
+
     cursor: pointer;
+
     transition: 0.3s;
+
 }
+
+
 
 .module:hover {
+
     transform: scale(1.05);
+
     transition: 0.3s;
+
 }
+
+
 
 .module-icon {
-    width: 180px;
-    height: 180px;
+
+    width: 100px;
+
+    height: 100px;
+
     margin-bottom: 10px;
+
     object-fit: contain;
+
 }
+
+
 
 /* Barre de navigation en bas */
+
 .bottom-nav {
+
     display: flex;
+
     justify-content: space-around;
+
     align-items: center;
+
     background-color: #fff;
+
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+
     padding: 10px 0;
+
     position: fixed;
+
     bottom: 0;
+
     width: 100%;
+
 }
+
+
 
 .nav-item {
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
+
     text-decoration: none;
+
     color: #007bff;
+
     font-size: 14px;
+
     text-align: center;
+
 }
+
+
 
 .nav-item:hover {
+
     font-weight: bold;
+
 }
+
+
 
 .nav-icon {
-    width: 60px;
-    height: 60px;
+
+    width: 40px;
+
+    height: 40px;
+
     object-fit: contain;
+
     margin-bottom: 5px;
+
 }
 
+
+
+/* Responsive - Mobile */
+
+@media (max-width: 768px) {
+
+    .modules {
+
+        grid-template-columns: repeat(1, 1fr); /* 1 module par ligne */
+
+    }
+
+
+
+    .module-icon {
+
+        width: 80px;
+
+        height: 80px;
+
+    }
+
+
+
+    .nav-icon {
+
+        width: 30px;
+
+        height: 30px;
+
+    }
+
+
+
+    .welcome-section h1 {
+
+        font-size: 18px; /* Réduction du titre */
+
+    }
+
+}
+
+
+
 /* Espace supplémentaire pour éviter le chevauchement */
+
 main {
+
     padding-bottom: 80px; /* L'espace en bas est ajusté pour laisser de la place pour la barre */
+
 }
