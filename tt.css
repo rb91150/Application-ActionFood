@@ -1,107 +1,231 @@
 body {
+
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+
     margin: 0;
+
     padding: 0;
+
+    background-color: #f9f9f9;
+
 }
+
+
 
 .container {
-    width: 60%;
-    margin: 50px auto;
+
+    width: 90%;
+
+    max-width: 500px;
+
+    margin: 0 auto;
+
     padding: 20px;
-    background-color: white;
+
+    background: #fff;
+
+    border-radius: 10px;
+
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
-h1, h2 {
+
+
+h1 {
+
+    font-size: 24px;
+
     color: #333;
-    text-align: left;  /* Aligner le texte à gauche */
+
+    text-align: center;
+
 }
+
+
 
 .divider {
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 20px 0;
+
+    border: none;
+
+    border-top: 2px solid #eee;
+
+    margin: 15px 0;
+
 }
 
-/* Alignement des sections à gauche */
-.product-opened, .service-section {
-    text-align: left;  /* Aligner le texte des sections à gauche */
-    margin-bottom: 20px;
-}
+
 
 .product-opened label {
-    display: block;
+
     font-size: 16px;
-    margin-bottom: 10px;
-    color: #333;
+
+    color: #555;
+
+    display: block;
+
+    margin-bottom: 5px;
+
 }
+
+
 
 .product-opened input {
-    padding: 10px;
-    font-size: 16px;
+
     width: 100%;
-    border-radius: 4px;
+
+    padding: 10px;
+
     border: 1px solid #ccc;
-}
 
-.service-section {
-    text-align: left;
-}
-
-/* Organisation des boutons de service */
-.service-buttons {
-    display: flex;
-    flex-wrap: wrap;  /* Permet aux boutons de se déplacer sur plusieurs lignes si nécessaire */
-    gap: 15px;  /* Espacement entre les boutons */
-    margin-top: 10px;
-    justify-content: flex-start; /* Aligner à gauche */
-}
-
-.service-buttons .button {
-    background-color: white; /* Boutons blancs par défaut */
-    color: #333;
-    padding: 15px 30px;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    font-size: 18px;
-    text-align: center;
-    border: 2px solid #ccc; /* Bordure grise claire */
-    min-width: 150px;  /* Largeur minimale des boutons */
-    flex: 1 0 150px; /* Chaque bouton peut se redimensionner mais prend au moins 150px */
+
+    font-size: 14px;
+
 }
 
-/* Masquer les boutons radio */
-.service-buttons input[type="radio"] {
-    display: none;
+
+
+/* Section des services */
+
+.service-section h2 {
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+
+    color: #333;
+
 }
 
-/* Changer la couleur de fond et du texte quand le bouton est sélectionné */
-.service-buttons input[type="radio"]:checked + .button {
-    background-color: #2196F3; /* Bleu lorsque sélectionné */
-    color: white; /* Texte blanc lorsque sélectionné */
-    border-color: #1976D2; /* Bordure bleue quand sélectionné */
-}
 
-/* Légère couleur de survol */
-.service-buttons .button:hover {
-    background-color: #f0f0f0; /* Couleur de survol */
-}
 
-/* Si vous avez des lignes avec un nombre de boutons spécifique, vous pouvez utiliser des classes personnalisées pour gérer cela */
-.service-buttons .row {
+.service-buttons {
+
     display: flex;
-    gap: 15px;
-    width: 100%;  /* Assurez-vous que la ligne occupe toute la largeur */
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    justify-content: center;
+
 }
 
-.service-buttons .row > .button {
-    flex: 1;  /* Chaque bouton prendra la même largeur */
+
+
+.button-container {
+
+    flex: 1 1 calc(50% - 10px);
+
+    max-width: 45%;
+
 }
 
-/* Assurez-vous que les lignes ne se chevauchent pas */
-.service-buttons .row-2 {
-    margin-top: 20px;
-    width: 100%; /* Forcer la ligne à occuper toute la largeur */
+
+
+.button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px;
+
+    border: 2px solid #ccc;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    transition: all 0.3s;
+
+    color: #333;
+
+}
+
+
+
+.button input {
+
+    display: none;
+
+}
+
+
+
+.button:hover,
+
+.button input:checked + label {
+
+    background: linear-gradient(to right, #007bff, #1e90ff);
+
+    color: #fff;
+
+    border-color: transparent;
+
+}
+
+
+
+/* Bouton Prochaine étape */
+
+.next-step-button {
+
+    display: block;
+
+    width: 80%;
+
+    max-width: 400px;
+
+    margin: 20px auto;
+
+    padding: 15px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    color: white;
+
+    background: linear-gradient(to right, #007bff, #1e90ff);
+
+    border: none;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    transition: background 0.3s ease, transform 0.2s ease;
+
+}
+
+
+
+.next-step-button:hover {
+
+    background: linear-gradient(to right, #0056b3, #1c7cd6);
+
+    transform: translateY(-2px);
+
+}
+
+
+
+.next-step-button:active {
+
+    transform: translateY(1px);
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }

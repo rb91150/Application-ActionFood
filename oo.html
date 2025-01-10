@@ -1,69 +1,125 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Date de Consommation</title>
-    <link rel="stylesheet" href="tt.css">
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
     <div class="container">
-        <h1>Date de Consommation</h1>
+
+        <h1>Date de consommation</h1>
+
         <hr class="divider">
 
-        <div class="product-opened">
-            <label for="date-consommation">Produit(s) ouvert(s) le :</label>
-            <input type="date" id="date-consommation" name="date-consommation">
-        </div>
+
 
         <div class="product-opened">
-            <label for="heure-consommation">Produit(s) ouvert(s) à :</label>
-            <input type="time" id="heure-consommation" name="heure-consommation">
+
+            <label for="date-consommation">Produit(s) ouvert(s) le :</label>
+
+            <input type="date" id="date-consommation" name="date-consommation">
+
         </div>
+
+
+
+        <div class="product-opened">
+
+            <label for="heure-consommation">Produit(s) ouvert(s) à :</label>
+
+            <input type="time" id="heure-consommation" name="heure-consommation">
+
+        </div>
+
+
 
         <div class="service-section">
+
             <h2>Service</h2>
+
             <hr class="divider">
+
             <div class="service-buttons">
-                <!-- Conteneur pour "Matin" -->
+
                 <div class="button-container">
+
                     <label class="button">
+
                         <input type="radio" name="service-time" value="Matin">
+
                         Matin
+
                     </label>
+
                 </div>
 
-                <!-- Conteneur pour "Midi" -->
                 <div class="button-container">
+
                     <label class="button">
+
                         <input type="radio" name="service-time" value="Midi">
+
                         Midi
+
                     </label>
+
                 </div>
 
-                <!-- Conteneur pour "Soir" -->
                 <div class="button-container">
+
                     <label class="button">
+
                         <input type="radio" name="service-time" value="Soir">
+
                         Soir
+
                     </label>
+
                 </div>
 
-                <!-- Conteneur pour "Indifférent" -->
                 <div class="button-container">
+
                     <label class="button">
+
                         <input type="radio" name="service-time" value="Indifférent">
+
                         Indifférent
+
                     </label>
+
                 </div>
+
             </div>
+
         </div>
+
+
+
+        <!-- Bouton Prochaine étape -->
+
+        <div class="next-step-container">
+
+            <button class="next-step-button" onclick="nextStep()">Prochaine étape</button>
+
+        </div>
+
     </div>
 
-    <script>
-        // Aucun script nécessaire pour cette fonctionnalité
-    </script>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
