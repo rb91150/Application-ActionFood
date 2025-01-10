@@ -188,7 +188,7 @@ body {
 
     .modules {
 
-        grid-template-columns: repeat(1, 1fr); /* 1 module par ligne */
+        grid-template-columns: repeat(2, 1fr); /* 2 module par ligne */
 
     }
 
