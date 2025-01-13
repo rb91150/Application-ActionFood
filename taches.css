@@ -1,0 +1,295 @@
+body {
+
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+
+    background-color: #f9f9f9;
+
+}
+
+
+
+/* Barre supérieure */
+
+.top-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 20px;
+
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+
+}
+
+
+
+.time-section {
+
+    font-size: 16px;
+
+    color: #333;
+
+}
+
+
+
+.header-icons .header-icon {
+
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+}
+
+
+
+/* Contenu principal */
+
+.main-content {
+
+    text-align: center;
+
+    padding: 20px;
+
+}
+
+
+
+.welcome-section {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+}
+
+
+
+.user-profile .profile-image {
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+}
+
+
+
+.user-info h2 {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    color: #333;
+
+}
+
+
+
+.user-info p {
+
+    margin: 0;
+
+    font-size: 16px;
+
+    color: #777;
+
+}
+
+
+
+.date-section h3 {
+
+    font-size: 18px;
+
+    color: #333;
+
+    margin: 20px 0 15px;
+
+}
+
+
+
+.filter-button {
+
+    display: block;
+
+    margin: 20px auto;
+
+    padding: 15px 30px;
+
+    background: linear-gradient(to right, #007bff, #1e90ff);
+
+    color: white;
+
+    font-size: 16px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    transition: background 0.3s ease;
+
+}
+
+
+
+.filter-button:hover {
+
+    background: linear-gradient(to right, #0056b3, #1c7cd6);
+
+}
+
+
+
+.no-tasks p {
+
+    font-size: 16px;
+
+    color: #777;
+
+}
+
+
+
+/* Barre de navigation */
+
+.bottom-nav {
+
+    display: flex;
+
+    justify-content: space-around;
+
+    align-items: center;
+
+    background: white;
+
+    border-top: 1px solid #ddd;
+
+    padding: 10px 0;
+
+    position: fixed;
+
+    bottom: 0;
+
+    width: 100%;
+
+}
+
+
+
+.nav-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+    color: #007bff;
+
+    font-size: 14px;
+
+    text-align: center;
+
+}
+
+
+
+.nav-item:hover {
+
+    font-weight: bold;
+
+}
+
+
+
+.nav-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    object-fit: contain;
+
+    margin-bottom: 5px;
+
+}
+
+/* Responsive - Mobile */
+
+@media (max-width: 768px) {
+
+    .modules {
+
+        grid-template-columns: repeat(2, 1fr); /* 2 module par ligne */
+
+    }
+
+
+
+    .module-icon {
+
+        width: 115px;
+
+        height: 115px;
+
+    }
+
+
+
+    .nav-icon {
+
+        width: 75px;
+
+        height: 75px;
+
+    }
+
+
+
+    .welcome-section h1 {
+
+        font-size: 18px; /* Réduction du titre */
+
+    }
+
+}
+
+
+
+/* Espace supplémentaire pour éviter le chevauchement */
+
+main {
+
+    padding-bottom: 80px; /* L'espace en bas est ajusté pour laisser de la place pour la barre */
+
+}

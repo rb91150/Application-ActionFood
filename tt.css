@@ -1,231 +1,193 @@
 body {
-
     font-family: Arial, sans-serif;
-
     margin: 0;
-
     padding: 0;
-
     background-color: #f9f9f9;
-
 }
 
+/* Barre du haut avec la bande bleue */
+.top-header {
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
+.back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 10px;
+}
 
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+}
+
+.header-icon {
+    width: 25px; /* Largeur de l'icône */
+    height: 25px; /* Hauteur de l'icône */
+    object-fit: contain; /* Ajuste l'image sans la déformer */
+    margin-left: 10px; /* Espacement entre les icônes */
+    cursor: pointer; /* Curseur interactif */
+}
+
+/* Conteneur principal */
 .container {
-
     width: 90%;
-
     max-width: 500px;
-
     margin: 0 auto;
-
     padding: 20px;
-
     background: #fff;
-
     border-radius: 10px;
-
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
 }
-
-
 
 h1 {
-
     font-size: 24px;
-
     color: #333;
-
     text-align: center;
-
 }
-
-
 
 .divider {
-
     border: none;
-
     border-top: 2px solid #eee;
-
     margin: 15px 0;
-
 }
 
-
-
+/* Input date et heure */
 .product-opened label {
-
     font-size: 16px;
-
     color: #555;
-
-    display: block;
-
+    display: flex; /* Flexbox pour aligner label et icône */
+    align-items: center;
     margin-bottom: 5px;
-
 }
-
-
 
 .product-opened input {
-
     width: 100%;
-
     padding: 10px;
-
     border: 1px solid #ccc;
-
     border-radius: 5px;
-
     font-size: 14px;
-
 }
 
+/* Icônes dans les labels (date et heure) */
+.label-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    object-fit: contain;
+}
 
-
-/* Section des services */
-
+/* Section Service */
 .service-section h2 {
-
     font-size: 20px;
-
     margin-bottom: 10px;
-
     color: #333;
-
 }
-
-
 
 .service-buttons {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    justify-content: center;
-
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+    gap: 15px; /* Espacement entre les boutons */
 }
-
-
-
-.button-container {
-
-    flex: 1 1 calc(50% - 10px);
-
-    max-width: 45%;
-
-}
-
-
 
 .button {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    padding: 10px;
-
+    padding: 15px;
     border: 2px solid #ccc;
-
-    border-radius: 20px;
-
+    border-radius: 25px;
     font-size: 14px;
-
     cursor: pointer;
-
     text-align: center;
-
     transition: all 0.3s;
-
     color: #333;
-
 }
 
+.service-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    object-fit: contain;
+}
 
-
+/* Boutons sélectionnés */
 .button input {
-
     display: none;
-
 }
-
-
 
 .button:hover,
-
 .button input:checked + label {
-
     background: linear-gradient(to right, #007bff, #1e90ff);
-
-    color: #fff;
-
+    color: white;
     border-color: transparent;
-
 }
-
-
 
 /* Bouton Prochaine étape */
-
 .next-step-button {
-
     display: block;
-
-    width: 80%;
-
-    max-width: 400px;
-
-    margin: 20px auto;
-
+    width: 100%;
+    margin: 20px 0;
     padding: 15px;
-
     font-size: 18px;
-
     font-weight: bold;
-
     text-align: center;
-
     color: white;
-
     background: linear-gradient(to right, #007bff, #1e90ff);
-
     border: none;
-
     border-radius: 30px;
-
     cursor: pointer;
-
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-    transition: background 0.3s ease, transform 0.2s ease;
-
 }
-
-
 
 .next-step-button:hover {
-
     background: linear-gradient(to right, #0056b3, #1c7cd6);
-
-    transform: translateY(-2px);
-
 }
 
-
-
 .next-step-button:active {
-
-    transform: translateY(1px);
-
+    transform: translateY(2px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .title {
+        font-size: 16px; /* Réduction du texte */
+    }
+
+    .header-icon {
+        width: 20px; /* Taille réduite des icônes */
+        height: 20px;
+    }
+
+    .product-opened label {
+        font-size: 14px; /* Réduction du texte */
+    }
+
+    .modules {
+        grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+    }
+
+    .module-icon {
+        width: 60px;
+        height: 60px; /* Taille réduite des icônes */
+    }
+
+    .module {
+        font-size: 14px; /* Réduction du texte des modules */
+        padding: 10px; /* Réduction du padding */
+    }
 }

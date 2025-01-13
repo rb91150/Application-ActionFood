@@ -23,3 +23,9 @@ document.querySelector(".module").addEventListener("click", () => {
     window.location.href = "App.html"; // Exemple de redirection vers une autre page.
 
 });
+// Interaction sur les modules
+document.querySelectorAll(".module").forEach((module) => {
+    module.addEventListener("click", () => {
+        console.log(`Vous avez cliqué sur : ${module.textContent}`);
+    });
+});
