@@ -23,9 +23,54 @@ document.querySelector(".module").addEventListener("click", () => {
     window.location.href = "App.html"; // Exemple de redirection vers une autre page.
 
 });
-// Interaction sur les modules
-document.querySelectorAll(".module").forEach((module) => {
-    module.addEventListener("click", () => {
-        console.log(`Vous avez cliqué sur : ${module.textContent}`);
+// Activer ou désactiver le mode édition
+
+document.getElementById('edit-mode').addEventListener('change', function () {
+
+    const isEditMode = this.checked;
+
+    document.querySelectorAll('.edit-button, .delete-button').forEach(button => {
+
+        button.style.display = isEditMode ? 'inline-block' : 'none';
+
     });
+
+});
+
+
+
+// Ajouter un équipement
+
+document.querySelector('.add-equipment-button').addEventListener('click', () => {
+
+    document.getElementById('add-popup').style.display = 'block';
+
+});
+
+
+
+// Fermer le popup
+
+document.querySelectorAll('.cancel-button').forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        document.querySelector('.popup').style.display = 'none';
+
+    });
+
+});
+
+
+
+// Confirmer la suppression
+
+document.querySelectorAll('.delete-button').forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        document.getElementById('delete-popup').style.display = 'block';
+
+    });
+
 });

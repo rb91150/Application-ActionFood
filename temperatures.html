@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Températures</title>
+
+    <link rel="stylesheet" href="temperatures.css">
+
+</head>
+
+<body>
+
+    <div class="top-header">
+
+        <button class="back-button" onclick="goBack()">Retour</button>
+
+        <h1 class="title">Températures</h1>
+
+        <div class="header-icons">
+
+            <img src="wifi-transparent-1371033_640.webp" alt="Wifi Icon" class="header-icon">
+
+            <img src="unnamed.png" alt="User Icon" class="header-icon">
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="date-time-section">
+
+            <label>
+
+                <img src="unnamed.jpg" alt="Lock Icon" class="label-icon">
+
+                Relevé le
+
+            </label>
+
+            <input type="date" id="date" class="input-date" />
+
+            <label>
+
+                <img src="unnamed.jpg" alt="Lock Icon" class="label-icon">
+
+                Fait à
+
+            </label>
+
+            <input type="time" id="time" class="input-time" />
+
+        </div>
+
+
+
+        <div class="equipment-section">
+
+            <div class="filter-bar">
+
+                <button class="filter-button">Tous les équipements</button>
+
+                <label class="toggle-wrapper">
+
+                    <input type="checkbox" id="edit-mode" />
+
+                    <span class="toggle"></span>
+
+                </label>
+
+            </div>
+
+            <ul id="equipment-list" class="equipment-list"></ul>
+
+            <button class="add-equipment-button" onclick="openAddModal()">+ Ajouter un équipement</button>
+
+        </div>
+
+    </div>
+
+    <div class="bottom-bar">
+
+        <button class="save-button" onclick="saveData()">Enregistrer les relevés de température</button>
+
+    </div>
+
+
+
+    <!-- Modals -->
+
+    <div id="add-modal" class="modal">
+
+        <div class="modal-content">
+
+            <h2>Ajouter un équipement</h2>
+
+            <label>Nom</label>
+
+            <input type="text" id="equipment-name" />
+
+            <label>Type</label>
+
+            <div class="type-options">
+
+                <button class="type-button" onclick="setEquipmentType('Congélateur')">Congélateur</button>
+
+                <button class="type-button" onclick="setEquipmentType('Frigo')">Frigo</button>
+
+                <button class="type-button" onclick="setEquipmentType('Chaud')">Chaud</button>
+
+            </div>
+
+            <div class="modal-buttons">
+
+                <button class="cancel-button" onclick="closeAddModal()">Annuler</button>
+
+                <button class="save-button" onclick="addEquipment()">Enregistrer</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="delete-modal" class="modal">
+
+        <div class="modal-content">
+
+            <h2>Attention</h2>
+
+            <p>Êtes-vous sûr de vouloir supprimer cet équipement ?</p>
+
+            <div class="modal-buttons">
+
+                <button class="cancel-button" onclick="closeDeleteModal()">Non</button>
+
+                <button class="delete-button" onclick="deleteEquipment()">Oui</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="temperatures.js"></script>
+
+</body>
+
+</html>
