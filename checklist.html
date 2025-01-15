@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checklist</title>
+
+    <link rel="stylesheet" href="checklist.css">
+
+</head>
+
+<body>
+
+    <!-- Barre du haut -->
+
+    <header class="top-bar">
+
+        <button class="back-button" onclick="window.location.href='index.html'">Retour</button>
+
+        <h1 class="title">Checklist</h1>
+
+        <div class="header-icons">
+
+            <img src="wifi-transparent-1371033_640.webp" alt="Wifi Icon" class="header-icon">
+
+            <img src="unnamed.png" alt="User Icon" class="header-icon">
+
+        </div>
+
+    </header>
+
+
+
+    <!-- Contenu principal -->
+
+    <main>
+
+        <section class="checklist-section">
+
+            <h2>Ma checklist hygiène</h2>
+
+
+
+            <!-- Date et heure -->
+
+            <div class="date-time">
+
+                <div class="date">
+
+                    <img src="unnamed.jpg" alt="Calendar Icon">
+
+                    <label for="date">Relevé le</label>
+
+                    <input type="date" id="date" value="2025-01-15">
+
+                </div>
+
+                <div class="time">
+
+                    <img src="unnamed.jpg" alt="Clock Icon">
+
+                    <label for="time">Fait à</label>
+
+                    <input type="time" id="time" value="15:52">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Points de contrôle -->
+
+            <h3>Points de contrôle</h3>
+
+            <ul class="control-points">
+
+                <li>
+
+                    <span>DLC des produits vérifiées dans mes frigos/congel</span>
+
+                    <div class="options">
+
+                        <button class="option-btn">Non</button>
+
+                        <button class="option-btn">Oui</button>
+
+                        <button class="edit-btn">Non évalué</button>
+
+                    </div>
+
+                </li>
+
+                <li>
+
+                    <span>Le personnel de cuisine ne porte pas de bijoux/montre</span>
+
+                    <div class="options">
+
+                        <button class="option-btn">Non</button>
+
+                        <button class="option-btn">Oui</button>
+
+                        <button class="edit-btn">Non évalué</button>
+
+                    </div>
+
+                </li>
+
+                <li>
+
+                    <span>Le personnel de cuisine porte une tenue propre</span>
+
+                    <div class="options">
+
+                        <button class="option-btn">Non</button>
+
+                        <button class="option-btn">Oui</button>
+
+                        <button class="edit-btn">Non évalué</button>
+
+                    </div>
+
+                </li>
+
+                <li>
+
+                    <span>Pas de cartons en zone de stockage</span>
+
+                    <div class="options">
+
+                        <button class="option-btn">Non</button>
+
+                        <button class="option-btn">Oui</button>
+
+                        <button class="edit-btn">Non évalué</button>
+
+                    </div>
+
+                </li>
+
+                <li>
+
+                    <span>Pas de stockage au sol</span>
+
+                    <div class="options">
+
+                        <button class="option-btn">Non</button>
+
+                        <button class="option-btn">Oui</button>
+
+                        <button class="edit-btn">Non évalué</button>
+
+                    </div>
+
+                </li>
+
+                <li>
+
+                    <span>Tous les produits entamés sont filmés/étiquetés</span>
+
+                    <div class="options">
+
+                        <button class="option-btn">Non</button>
+
+                        <button class="option-btn">Oui</button>
+
+                        <button class="edit-btn">Non évalué</button>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+
+
+            <!-- Bouton Valider -->
+
+            <button class="validate-btn" onclick="validateChecklist()">Valider les contrôles</button>
+
+        </section>
+
+    </main>
+
+
+
+    <script src="checklist.js"></script>
+
+</body>
+
+</html>
