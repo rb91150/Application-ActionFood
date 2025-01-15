@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>T°C Produit</title>
+
+    <link rel="stylesheet" href="temperature_produit.css">
+
+</head>
+
+<body>
+
+    <!-- Barre du haut -->
+
+    <header class="top-bar">
+
+        <button class="back-button" onclick="window.location.href='index.html'">Retour</button>
+
+        <h1 class="title">T°C produit</h1>
+
+        <div class="header-icons">
+
+            <img src="wifi-transparent-1371033_640.webp" alt="Wifi Icon" class="header-icon">
+
+            <img src="unnamed.png" alt="User Icon" class="header-icon">
+
+        </div>
+
+    </header>
+
+
+
+    <!-- Contenu principal -->
+
+    <main>
+
+        <section class="operation-type">
+
+            <label for="operation">Type d'opération</label>
+
+            <div class="dropdown">
+
+                <select id="operation">
+
+                    <option value="Refroidissement">Refroidissement</option>
+
+                    <option value="Réchauffement">Réchauffement</option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="products">
+
+            <label>Produits</label>
+
+            <button class="product-base">+ Choisir dans la base produit</button>
+
+            <div class="independent-product">
+
+                <span>Produit indépendant</span>
+
+                <button class="add-product-btn">+</button>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="additional-info">
+
+            <label for="additional-info">Informations additionnelles</label>
+
+            <textarea id="additional-info" placeholder="..."></textarea>
+
+        </section>
+
+
+
+        <!-- Bouton Suivant -->
+
+        <footer>
+
+            <button class="next-button">Suivant</button>
+
+        </footer>
+
+    </main>
+
+
+
+    <!-- Lien vers le fichier JavaScript -->
+
+    <script src="temperature_produit.js"></script>
+
+</body>
+
+</html>
