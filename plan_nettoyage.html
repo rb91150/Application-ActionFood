@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Plan de Nettoyage</title>
+
+    <link rel="stylesheet" href="plan_nettoyage.css">
+
+</head>
+
+
+
+<body>
+
+    <!-- Barre du haut -->
+
+    <header>
+
+        <div class="top-bar">
+
+            <button class="back-button" onclick="window.location.href='index.html'">Retour</button>
+
+            <h1 class="title">Plan de nettoyage</h1>
+
+            <div class="header-icons">
+
+                <img src="wifi-transparent-1371033_640.webp" alt="Wifi Icon" class="header-icon">
+
+                <img src="unnamed.png" alt="User Icon" class="header-icon">
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- Contenu principal -->
+
+    <main>
+
+        <section class="action-date">
+
+            <h2>Date de l'action de nettoyage <span class="help-icon">?</span></h2>
+
+            <div class="date-time-section">
+
+                <div class="date">
+
+                    <img src="unnamed.jpg" alt="Lock Icon">
+
+                    <label for="date">Date</label>
+
+                    <input type="date" id="date" value="2025-01-14">
+
+                </div>
+
+                <div class="time">
+
+                    <img src="IMG_9603.jpeg" alt="Clock Icon">
+
+                    <label for="time">Heure</label>
+
+                    <input type="time" id="time" value="19:22">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="zone-list">
+
+            <h2>Liste des zones à nettoyer</h2>
+
+            <p>Appuyez sur les zones de nettoyage pour indiquer les postes nettoyés</p>
+
+            <div class="toggle-container">
+
+                <label for="edit-mode" class="toggle-label">Modifier</label>
+
+                <input type="checkbox" id="edit-mode">
+
+                <span class="toggle"></span>
+
+            </div>
+
+            <ul class="zones">
+
+                <li>A - Cuisine Quotidien</li>
+
+                <li>B - Cuisine Hebdo</li>
+
+                <li>C - Zone de Stockage</li>
+
+            </ul>
+
+            <button class="add-zone" onclick="addZone()">+ Ajouter une zone de nettoyage</button>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- Bouton Terminer -->
+
+    <footer>
+
+        <button class="finish-button" onclick="saveData()">Terminer</button>
+
+    </footer>
+
+
+
+    <script src="plan_nettoyage.js"></script>
+
+</body>
+
+
+
+</html>

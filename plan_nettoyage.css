@@ -1,0 +1,357 @@
+/* Styles généraux */
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+
+    background-color: #f9f9f9;
+
+}
+
+
+
+/* Barre du haut */
+
+.top-bar {
+
+    background-color: #007bff;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 10px;
+
+}
+
+
+
+.back-button {
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+
+
+.title {
+
+    font-size: 18px;
+
+}
+
+
+
+.header-icons img {
+
+    width: 25px; /* Taille des icônes en haut */
+
+    height: 25px;
+
+    margin-left: 10px;
+
+}
+
+
+
+/* Section principale */
+
+main {
+
+    padding: 20px;
+
+}
+
+
+
+.action-date h2 {
+
+    font-size: 16px;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.help-icon {
+
+    background-color: #007bff;
+
+    color: white;
+
+    padding: 2px 6px;
+
+    border-radius: 50%;
+
+    font-size: 14px;
+
+    margin-left: 5px;
+
+}
+
+
+
+.date-time-section {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    align-items: center;
+
+}
+
+
+
+.date,
+
+.time {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+
+.date img,
+
+.time img {
+
+    width: 32px; /* Taille des icônes pour date et heure */
+
+    height: 32px;
+
+}
+
+
+
+input[type="date"],
+
+input[type="time"] {
+
+    border: 1px solid #ddd;
+
+    padding: 10px;
+
+    border-radius: 5px;
+
+    background-color: white;
+
+    color: #555;
+
+    width: 100%;
+
+    font-size: 14px;
+
+}
+
+
+
+/* Liste des zones */
+
+.zone-list h2 {
+
+    font-size: 16px;
+
+    margin: 20px 0 10px;
+
+}
+
+
+
+.zone-list p {
+
+    font-size: 14px;
+
+    color: #555;
+
+}
+
+
+
+.zones {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0 0 20px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+}
+
+
+
+.zones li {
+
+    padding: 10px;
+
+    border-bottom: 1px solid #ddd;
+
+    background-color: white;
+
+    color: #555;
+
+}
+
+
+
+.zones li:last-child {
+
+    border-bottom: none;
+
+}
+
+
+
+/* Toggle switch */
+
+.toggle-container {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 10px 0;
+
+}
+
+
+
+.toggle-label {
+
+    font-size: 14px;
+
+}
+
+
+
+.toggle {
+
+    width: 40px;
+
+    height: 20px;
+
+    background-color: #ddd;
+
+    border-radius: 20px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    display: inline-block;
+
+}
+
+
+
+.toggle::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 16px;
+
+    height: 16px;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    top: 2px;
+
+    left: 2px;
+
+    transition: all 0.3s;
+
+}
+
+
+
+input[type="checkbox"]:checked + .toggle::before {
+
+    left: 22px;
+
+}
+
+
+
+/* Boutons */
+
+.add-zone {
+
+    background-color: white;
+
+    color: #007bff;
+
+    border: 1px solid #007bff;
+
+    padding: 10px;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    width: 100%;
+
+    text-align: left;
+
+}
+
+
+
+.finish-button {
+
+    background-color: #28a745;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+
+    width: 100%;
+
+    cursor: pointer;
+
+}
