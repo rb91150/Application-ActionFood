@@ -54,13 +54,17 @@ body {
 
     font-size: 18px;
 
+    text-align: center;
+
+    flex-grow: 1;
+
 }
 
 
 
 .header-icons img {
 
-    width: 25px; /* Taille des icônes en haut */
+    width: 25px;
 
     height: 25px;
 
@@ -118,13 +122,13 @@ main {
 
     align-items: center;
 
+    flex-wrap: wrap;
+
 }
 
 
 
-.date,
-
-.time {
+.date, .time {
 
     flex: 1;
 
@@ -138,11 +142,9 @@ main {
 
 
 
-.date img,
+.icon {
 
-.time img {
-
-    width: 32px; /* Taille des icônes pour date et heure */
+    width: 32px;
 
     height: 32px;
 
@@ -150,9 +152,7 @@ main {
 
 
 
-input[type="date"],
-
-input[type="time"] {
+input[type="date"], input[type="time"] {
 
     border: 1px solid #ddd;
 
@@ -353,5 +353,53 @@ input[type="checkbox"]:checked + .toggle::before {
     width: 100%;
 
     cursor: pointer;
+
+}
+
+
+
+/* Responsivité */
+
+@media (max-width: 768px) {
+
+    .date-time-section {
+
+        flex-direction: column;
+
+    }
+
+
+
+    .icon {
+
+        width: 28px;
+
+        height: 28px;
+
+    }
+
+
+
+    input[type="date"], input[type="time"] {
+
+        font-size: 12px;
+
+    }
+
+
+
+    .zones li {
+
+        font-size: 14px;
+
+    }
+
+
+
+    .add-zone, .finish-button {
+
+        font-size: 14px;
+
+    }
 
 }
