@@ -1,0 +1,227 @@
+/* Styles généraux */
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+
+    background-color: #f9f9f9;
+
+}
+
+
+
+/* Barre du haut */
+
+.top-bar {
+
+    background-color: #007bff;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 10px 15px;
+
+}
+
+
+
+.back-button {
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+
+
+.title {
+
+    font-size: 20px;
+
+}
+
+
+
+.header-icons img {
+
+    width: 25px;
+
+    height: 25px;
+
+    margin-left: 10px;
+
+}
+
+
+
+/* Section principale */
+
+.reception-section {
+
+    text-align: center;
+
+    margin: 20px;
+
+}
+
+
+
+.new-reception-button {
+
+    background-color: #007bff;
+
+    color: white;
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.reception-list {
+
+    margin: 20px;
+
+}
+
+
+
+.reception-list h3 {
+
+    font-size: 16px;
+
+    color: #333;
+
+}
+
+
+
+.reception-list p {
+
+    color: #666;
+
+    font-size: 14px;
+
+}
+
+
+
+/* Pop-up d'aide */
+
+#help-popup {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background-color: #f9f9f9;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    margin: 20px auto;
+
+    width: 90%;
+
+    max-width: 400px;
+
+    text-align: center;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    transition: all 0.3s ease;
+
+}
+
+
+
+#help-popup.hidden {
+
+    display: none;
+
+}
+
+
+
+.help-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 10px;
+
+}
+
+
+
+.help-no,
+
+.help-yes {
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+}
+
+
+
+.help-no {
+
+    background-color: #ddd;
+
+    color: #333;
+
+}
+
+
+
+.help-yes {
+
+    background-color: #007bff;
+
+    color: white;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
