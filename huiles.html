@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrôle d'huile</title>
+    <link rel="stylesheet" href="huiles.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <!-- Bouton retour centré -->
+            <div class="centered-back">
+                <button class="back-button" onclick="window.location.href='index.html'">
+                    <img src="137531.png" alt="Retour" class="icon">
+                </button>
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="title">Contrôle d'huile</h1>
+
+            <!-- Icônes alignées à droite -->
+            <div class="header-icons">
+                <img src="historique-icone-de-l-historique-verte.png" alt="Historique" class="icon">
+                <img src="5201246.png" alt="Aide" class="icon">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section Date et Heure -->
+        <section class="date-time-section">
+            <label for="date">Date du relevé d'huile</label>
+            <div class="date-time-fields">
+                <div class="field">
+                    <input type="date" id="date" value="2025-01-16">
+                </div>
+                <div class="field">
+                    <input type="time" id="time" value="18:09">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Équipements -->
+        <section class="equipment-section">
+            <label>Équipements</label>
+            <a href="#" class="modify-list-link">Modifier la liste</a>
+            <div class="equipment-item">
+                <input type="checkbox" id="friteuse">
+                <label for="friteuse">Friteuse</label>
+            </div>
+        </section>
+
+        <!-- Bouton Valider -->
+        <button class="validate-button" onclick="validerDonnees()">Valider</button>
+    </main>
+
+    <script src="huiles.js"></script>
+</body>
+</html>

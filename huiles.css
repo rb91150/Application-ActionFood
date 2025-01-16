@@ -1,0 +1,189 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    position: sticky;
+    top: 0;
+}
+
+header .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+header .centered-back {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+header .title {
+    flex: 2;
+    font-size: 18px;
+    text-align: center;
+    margin: 0;
+}
+
+header .header-icons {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+header .icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Section Date et Heure */
+.date-time-section {
+    padding: 15px;
+}
+
+.date-time-section label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.date-time-fields {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.field {
+    flex: 1;
+    position: relative;
+}
+
+.field input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 35px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    appearance: none;
+}
+
+.field-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+/* Section Équipements */
+.equipment-section {
+    padding: 15px;
+}
+
+.equipment-section label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modify-list-link {
+    color: #007bff;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.equipment-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.equipment-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+/* Bouton Valider */
+.validate-button {
+    display: block;
+    width: calc(100% - 30px);
+    margin: 20px auto;
+    padding: 15px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.validate-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .title {
+        font-size: 16px;
+    }
+
+    header .icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    header .top-bar {
+        flex-wrap: wrap;
+    }
+
+    header .centered-back {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header .title {
+        font-size: 14px;
+    }
+
+    header .icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .date-time-section label,
+    .equipment-section label {
+        font-size: 14px;
+    }
+
+    .validate-button {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .field input {
+        font-size: 12px;
+    }
+}

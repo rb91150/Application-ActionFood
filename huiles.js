@@ -1,4 +1,3 @@
-// Fonction pour valider les données
 function validerDonnees() {
     const date = document.getElementById("date").value;
     const time = document.getElementById("time").value;
