@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date de Production</title>
+    <link rel="stylesheet" href="production.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <!-- Bouton retour aligné à gauche -->
+            <button class="back-button" onclick="window.location.href='index.html'">
+
+                <span>Retour</span>
+            </button>
+
+            <!-- Titre centré -->
+            <h1 class="title">Production</h1>
+
+            <!-- Icônes alignées à droite -->
+            <div class="header-icons">
+                <!-- Placeholder pour votre propre icône Wi-Fi -->
+                <img src="wifi-transparent-1371033_640.webp" alt="Wi-Fi" class="icon">
+                <!-- Placeholder pour votre propre icône utilisateur -->
+                <img src="unnamed.png" alt="Utilisateur" class="icon">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section Date -->
+        <section class="date-section">
+            <label for="date">Date de production</label>
+            <div class="date-field">
+                <span class="label-icon">
+                    <img src="unnamed.jpg" alt="Calendrier verrouillé" class="icon">
+                    Préparé le
+                </span>
+                <input type="date" id="date" value="2025-01-16">
+            </div>
+        </section>
+
+        <!-- Section Service -->
+        <section class="service-section">
+            <label>Service</label>
+            <div class="service-options">
+                <button class="service-btn" data-service="matin" onclick="selectService(this)">
+                    <img src="IMG_9517.jpeg" alt="Matin" class="icon">
+                    Matin
+                </button>
+                <button class="service-btn" data-service="midi" onclick="selectService(this)">
+                    <img src="IMG_9518.jpeg" alt="Midi" class="icon">
+                    Midi
+                </button>
+                <button class="service-btn active" data-service="soir" onclick="selectService(this)">
+                    <img src="IMG_9520.jpeg" alt="Soir" class="icon">
+                    Soir
+                </button>
+                <button class="service-btn" data-service="indifferent" onclick="selectService(this)">
+                    <img src="IMG_9519.jpeg" alt="Indifférent" class="icon">
+                    Indifférent
+                </button>
+            </div>
+        </section>
+
+        <!-- Section Recettes -->
+        <section class="recipe-section">
+            <p>Appuyez sur une recette pour la sélectionner</p>
+            <div class="search-recipe">
+                <input type="text" placeholder="Exemple : Boeuf Bourguignon, Paella, etc.">
+                <button class="add-recipe-btn">
+                    Ajouter
+                </button>
+            </div>
+            <div class="recipe-message">
+                <p>Vous n'avez créé aucune recette pour le moment.</p>
+                <p>Pour commencer à enregistrer des productions, vous devez créer au moins une recette en utilisant le bouton "ajouter une recette" ci-dessous.</p>
+            </div>
+        </section>
+
+        <!-- Bouton Prochaine étape -->
+        <button class="next-step-btn" onclick="prochaineEtape()">Prochaine étape</button>
+    </main>
+
+    <script src="production.js"></script>
+</body>
+</html>

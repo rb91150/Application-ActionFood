@@ -1,0 +1,151 @@
+/* Barre supérieure */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.title {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icons .icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Section Date */
+.date-section {
+    padding: 15px;
+}
+
+.date-section label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.date-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.date-field .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.date-field input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Section Service */
+.service-section {
+    padding: 15px;
+}
+
+.service-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.service-btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.service-btn.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.service-btn .icon {
+    display: block;
+    margin: 0 auto 5px;
+    width: 24px;
+    height: 24px;
+}
+
+/* Section Recettes */
+.recipe-section {
+    padding: 15px;
+}
+
+.search-recipe {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.search-recipe input {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.add-recipe-btn {
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Bouton Prochaine étape */
+.next-step-btn {
+    display: block;
+    width: calc(100% - 30px);
+    margin: 20px auto;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.next-step-btn:hover {
+    background-color: #218838;
+}
