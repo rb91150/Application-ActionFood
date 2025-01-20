@@ -129,33 +129,49 @@
 /* Responsive - Mobile */
 
 @media (max-width: 768px) {
-    .history-list li {
-        font-size: 14px;
-        flex-direction: column;
-        align-items: flex-start;
+
+    .modules {
+
+        grid-template-columns: repeat(2, 1fr); /* 2 module par ligne */
+
     }
 
-    .history-list .icon {
-        margin-bottom: 5px;
+
+
+    .module-icon {
+
+        width: 115px;
+
+        height: 115px;
+
     }
 
-    .bottom-nav .nav-icon {
-        width: 30px;
-        height: 30px;
+
+
+    .nav-icon {
+
+        width: 75px;
+
+        height: 75px;
+
     }
+
+
+
+    .welcome-section h1 {
+
+        font-size: 18px; /* Réduction du titre */
+
+    }
+
 }
 
-@media (max-width: 480px) {
-    .title {
-        font-size: 16px;
-    }
 
-    .bottom-nav .nav-item {
-        font-size: 12px;
-    }
 
-    .history-list li {
-        font-size: 12px;
-        padding: 8px;
-    }
+/* Espace supplémentaire pour éviter le chevauchement */
+
+main {
+
+    padding-bottom: 80px; /* L'espace en bas est ajusté pour laisser de la place pour la barre */
+
 }
