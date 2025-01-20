@@ -1,0 +1,161 @@
+/* Barre supérieure */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.title {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icons .icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Icône d'aide */
+.icon-help {
+    width: 20px; /* Taille ajustée pour l'icône d'aide */
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Section historique */
+.type-selection {
+    padding: 15px;
+}
+
+.type-selection p {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.history-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.history-list li:hover {
+    background-color: #f0f8ff;
+}
+
+.history-list .icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.history-list .lock-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Barre de navigation */
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.nav-item:hover {
+    font-weight: bold;
+}
+
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+/* Responsive - Mobile */
+
+@media (max-width: 768px) {
+    .history-list li {
+        font-size: 14px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .history-list .icon {
+        margin-bottom: 5px;
+    }
+
+    .bottom-nav .nav-icon {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 16px;
+    }
+
+    .bottom-nav .nav-item {
+        font-size: 12px;
+    }
+
+    .history-list li {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
