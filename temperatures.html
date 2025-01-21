@@ -1,155 +1,100 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Températures</title>
-
     <link rel="stylesheet" href="temperatures.css">
-
 </head>
 
 <body>
-
     <div class="top-header">
-
-        <button class="back-button" onclick="goBack()">Retour</button>
-
+        <button class="back-button" onclick="window.location.href='index.html'">Retour</button>
         <h1 class="title">Températures</h1>
-
         <div class="header-icons">
-
             <img src="wifi-transparent-1371033_640.webp" alt="Wifi Icon" class="header-icon">
-
             <img src="unnamed.png" alt="User Icon" class="header-icon">
-
         </div>
-
     </div>
 
     <div class="container">
-
+        <!-- Date and Time Section -->
         <div class="date-time-section">
-
-            <label>
-
-                <img src="unnamed.jpg" alt="Lock Icon" class="label-icon">
-
+            <label for="date-picker">
+                <img src="IMG_9602.jpeg" alt="Calendar" class="icon">
                 Relevé le
-
             </label>
+            <input type="date" id="date-picker" value="2025-01-16">
 
-            <input type="date" id="date" class="input-date" />
-
-            <label>
-
-                <img src="unnamed.jpg" alt="Lock Icon" class="label-icon">
-
+            <label for="time-picker">
+                <img src="IMG_9602.jpeg" alt="Clock" class="icon">
                 Fait à
-
             </label>
-
-            <input type="time" id="time" class="input-time" />
-
+            <input type="time" id="time-picker" value="12:30">
         </div>
 
-
-
+        <!-- Equipment Section -->
         <div class="equipment-section">
+            <ul class="equipment-list">
+                <!-- Eje -->
+                <li>
+                    <input type="checkbox" id="eje" checked onchange="toggleEquipment('eje')">
+                    <label for="eje">Eje</label>
+                    <span id="eje-temp" class="temperature">2 °C</span>
+                    <button class="temp-button" data-id="eje" data-action="increase">+</button>
+                    <button class="temp-button" data-id="eje" data-action="decrease">-</button>
+                    <span id="eje-alert" class="alert" onclick="openAlert('Eje')" style="display: none;">⚠️</span>
+                </li>
 
-            <div class="filter-bar">
+                <!-- Congel 1 -->
+                <li>
+                    <input type="checkbox" id="congel1" checked onchange="toggleEquipment('congel1')">
+                    <label for="congel1">Congel 1</label>
+                    <span id="congel1-temp" class="temperature">-21.5 °C</span>
+                    <button class="temp-button" data-id="congel1" data-action="increase">+</button>
+                    <button class="temp-button" data-id="congel1" data-action="decrease">-</button>
+                    <span id="congel1-alert" class="alert" onclick="openAlert('Congel 1')" style="display: none;">⚠️</span>
+                </li>
 
-                <button class="filter-button">Tous les équipements</button>
+                <!-- Frigo 1 -->
+                <li>
+                    <input type="checkbox" id="frigo1" checked onchange="toggleEquipment('frigo1')">
+                    <label for="frigo1">Frigo 1</label>
+                    <span id="frigo1-temp" class="temperature">3 °C</span>
+                    <button class="temp-button" data-id="frigo1" data-action="increase">+</button>
+                    <button class="temp-button" data-id="frigo1" data-action="decrease">-</button>
+                    <span id="frigo1-alert" class="alert" onclick="openAlert('Frigo 1')" style="display: none;">⚠️</span>
+                </li>
+            </ul>
 
-                <label class="toggle-wrapper">
-
-                    <input type="checkbox" id="edit-mode" />
-
-                    <span class="toggle"></span>
-
-                </label>
-
-            </div>
-
-            <ul id="equipment-list" class="equipment-list"></ul>
-
+            <!-- Bouton pour ajouter un équipement -->
             <button class="add-equipment-button" onclick="openAddModal()">+ Ajouter un équipement</button>
-
         </div>
-
     </div>
 
-    <div class="bottom-bar">
-
-        <button class="save-button" onclick="saveData()">Enregistrer les relevés de température</button>
-
-    </div>
-
-
-
-    <!-- Modals -->
-
-    <div id="add-modal" class="modal">
-
+    <!-- Ajouter un équipement Modal -->
+    <div id="add-equipment-modal" class="modal">
         <div class="modal-content">
-
             <h2>Ajouter un équipement</h2>
+            <label for="equipment-name">Nom :</label>
+            <input type="text" id="equipment-name" placeholder="Entrez un nom">
 
-            <label>Nom</label>
-
-            <input type="text" id="equipment-name" />
-
-            <label>Type</label>
-
+            <label>Type :</label>
             <div class="type-options">
-
-                <button class="type-button" onclick="setEquipmentType('Congélateur')">Congélateur</button>
-
-                <button class="type-button" onclick="setEquipmentType('Frigo')">Frigo</button>
-
-                <button class="type-button" onclick="setEquipmentType('Chaud')">Chaud</button>
-
+                <button class="type-button" onclick="setEquipmentType('Congélateur')">Congélateur (min : -25°C, max :-18°C)</button>
+                <button class="type-button" onclick="setEquipmentType('Frigo')">Frigo (min : -0°C, max :-4°C)</button>
+                <button class="type-button" onclick="setEquipmentType('Chaud')">Chaud (min : 63°C)</button>
             </div>
 
             <div class="modal-buttons">
-
                 <button class="cancel-button" onclick="closeAddModal()">Annuler</button>
-
                 <button class="save-button" onclick="addEquipment()">Enregistrer</button>
-
             </div>
-
         </div>
-
-    </div>
-
-    <div id="delete-modal" class="modal">
-
-        <div class="modal-content">
-
-            <h2>Attention</h2>
-
-            <p>Êtes-vous sûr de vouloir supprimer cet équipement ?</p>
-
-            <div class="modal-buttons">
-
-                <button class="cancel-button" onclick="closeDeleteModal()">Non</button>
-
-                <button class="delete-button" onclick="deleteEquipment()">Oui</button>
-
-            </div>
-
-        </div>
-
     </div>
 
     <script src="temperatures.js"></script>
-
 </body>
 
 </html>
