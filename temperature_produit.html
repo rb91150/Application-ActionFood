@@ -2,6 +2,8 @@
 
 <html lang="fr">
 
+
+
 <head>
 
     <meta charset="UTF-8">
@@ -13,6 +15,8 @@
     <link rel="stylesheet" href="temperature_produit.css">
 
 </head>
+
+
 
 <body>
 
@@ -40,6 +44,8 @@
 
     <main>
 
+        <!-- Section Type d'opération -->
+
         <section class="operation-type">
 
             <label for="operation">Type d'opération</label>
@@ -48,9 +54,17 @@
 
                 <select id="operation">
 
-                    <option value="Refroidissement">Refroidissement</option>
+                    <option value="" disabled selected>Sélectionner</option>
 
-                    <option value="Réchauffement">Réchauffement</option>
+                    <option value="liaison-chaude">Liaison chaude</option>
+
+                    <option value="liaison-froide">Liaison froide</option>
+
+                    <option value="refroidissement">Refroidissement</option>
+
+                    <option value="remise-tc">Remise en T°C</option>
+
+                    <option value="service-chaud">Température service chaud</option>
 
                 </select>
 
@@ -60,6 +74,8 @@
 
 
 
+        <!-- Section Produits -->
+
         <section class="products">
 
             <label>Produits</label>
@@ -68,15 +84,19 @@
 
             <div class="independent-product">
 
-                <span>Produit indépendant</span>
+                <input type="text" id="independent-product-input" placeholder="Produit indépendant">
 
                 <button class="add-product-btn">+</button>
 
             </div>
 
+            <ul id="product-list" class="product-list"></ul>
+
         </section>
 
 
+
+        <!-- Section Informations additionnelles -->
 
         <section class="additional-info">
 
@@ -100,10 +120,10 @@
 
 
 
-    <!-- Lien vers le fichier JavaScript -->
-
     <script src="temperature_produit.js"></script>
 
 </body>
+
+
 
 </html>

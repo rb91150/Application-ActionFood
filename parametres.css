@@ -1,53 +1,103 @@
 /* Barre supérieure */
+
 .top-bar {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     background-color: white;
+
     padding: 10px 15px;
+
     border-bottom: 1px solid #ddd;
+
 }
+
+
 
 .top-bar .title {
+
     font-size: 18px;
+
     font-weight: bold;
+
     text-align: center;
+
     flex: 1;
+
 }
+
+
 
 .top-icon {
+
     width: 24px;
+
     height: 24px;
+
     cursor: pointer;
+
 }
+
+
 
 /* Liste des paramètres */
+
 .settings-list {
+
     list-style: none;
+
     padding: 0;
+
     margin: 0;
+
 }
+
+
 
 .settings-list li {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     padding: 15px 20px;
+
     border-bottom: 1px solid #ddd;
+
     font-size: 16px;
+
     cursor: pointer;
+
     transition: background-color 0.3s;
+
 }
+
+
 
 .settings-list li:hover {
+
     background-color: #f0f8ff;
+
 }
+
+
 
 .settings-list .icon {
+
     font-size: 18px;
+
 }
 
+
+
 /* Barre de navigation */
+
 .bottom-nav {
 
     display: flex;
@@ -111,55 +161,5 @@
     object-fit: contain;
 
     margin-bottom: 5px;
-
-}
-
-/* Responsive - Mobile */
-
-@media (max-width: 768px) {
-
-    .modules {
-
-        grid-template-columns: repeat(2, 1fr); /* 2 module par ligne */
-
-    }
-
-
-
-    .module-icon {
-
-        width: 115px;
-
-        height: 115px;
-
-    }
-
-
-
-    .nav-icon {
-
-        width: 75px;
-
-        height: 75px;
-
-    }
-
-
-
-    .welcome-section h1 {
-
-        font-size: 18px; /* Réduction du titre */
-
-    }
-
-}
-
-
-
-/* Espace supplémentaire pour éviter le chevauchement */
-
-main {
-
-    padding-bottom: 80px; /* L'espace en bas est ajusté pour laisser de la place pour la barre */
 
 }

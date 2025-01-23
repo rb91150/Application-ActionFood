@@ -1,57 +1,107 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
+
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sélectionner des produits</title>
+
     <link rel="stylesheet" href="etiqueteuse.css">
+
 </head>
+
+
+
 <body>
+
     <header>
+
         <div class="top-bar">
-            <!-- Bouton retour -->
+
             <button class="back-button" onclick="window.location.href='index.html'">Retour</button>
-            
-            <!-- Titre centré -->
+
             <h1 class="title">Sélectionner des produits</h1>
 
-            <!-- Icônes Wi-Fi et utilisateur -->
             <div class="header-icons">
+
                 <img src="wifi-transparent-1371033_640.webp" alt="Wi-Fi" class="icon">
+
                 <img src="unnamed.png" alt="Utilisateur" class="icon">
+
             </div>
+
         </div>
+
     </header>
 
+
+
     <main>
+
         <!-- Barre de recherche -->
+
         <section class="search-section">
+
             <input type="text" id="search" placeholder="Rechercher un produit" onkeyup="rechercherProduit()">
+
         </section>
+
+
 
         <!-- Boutons d'action -->
+
         <section class="actions">
-            <button id="code-barre-btn" class="action-btn" onclick="scannerCodeBarre()">Code-barre</button>
+
+            <button id="code-barre-btn" class="action-btn" onclick="toggleScanner()">Scanner Code-barre</button>
+
             <button id="creer-produit-btn" class="action-btn" onclick="creerProduit()">Créer le produit</button>
+
             <button id="creer-recette-btn" class="action-btn" onclick="creerRecette()">Créer la recette</button>
+
         </section>
 
+
+
+        <!-- Scanner Code-barre -->
+
+        <section id="scanner-container" style="display: none;">
+
+            <div id="interactive" class="viewport"></div>
+
+            <button id="stop-scanner" class="action-btn" onclick="stopScanner()">Arrêter le scanner</button>
+
+        </section>
+
+
+
         <!-- Liste des produits -->
+
         <section class="product-list">
+
             <div class="product-item" onclick="toggleSelection(this)">
+
                 <span>Beurre AOP</span>
+
                 <span class="product-category">Normandie - Frais</span>
+
                 <div class="select-icon"></div>
+
             </div>
+
             <div class="product-item" onclick="toggleSelection(this)">
+
                 <span>Huile d'olive</span>
+
                 <span class="product-category">Vierge Extra - Sec</span>
+
                 <div class="select-icon"></div>
-            </div>
-            <div class="product-item" onclick="toggleSelection(this)">
-                <span>Oeuf Moyen</span>
-                <span class="product-category">Élevés en plein air - Sec</span>
-                <div class="select-icon"></div>
+
             </div>
             <div class="product-item" onclick="toggleSelection(this)">
                 <span>Ff</span>
@@ -70,10 +120,25 @@
             </div>
         </section>
 
+
+
+
         <!-- Bouton de validation -->
+
         <button id="valider-btn" class="validate-button" onclick="validerProduits()">Valider les produits</button>
+
     </main>
 
+
+
+    <!-- QuaggaJS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+
     <script src="etiqueteuse.js"></script>
+
 </body>
+
+
+
 </html>

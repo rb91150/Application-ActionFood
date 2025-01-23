@@ -134,3 +134,36 @@ body {
 .validate-button:hover {
     background-color: #218838;
 }
+/* Scanner Code-barre */
+
+#scanner-container {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 300px;
+
+    background-color: black;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+
+.viewport {
+
+    width: 100%;
+
+    height: 100%;
+
+    position: relative;
+
+    border: 2px solid #007bff;
+
+}

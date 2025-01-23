@@ -122,7 +122,7 @@ label {
 
     flex-direction: column;
 
-    gap: 20px;
+    gap: 10px;
 
 }
 
@@ -176,11 +176,17 @@ label {
 
 
 
-.independent-product span {
+.independent-product input {
+
+    border: none;
+
+    outline: none;
+
+    flex: 1;
+
+    padding: 5px;
 
     font-size: 16px;
-
-    color: #555;
 
 }
 
@@ -207,6 +213,56 @@ label {
     justify-content: center;
 
     align-items: center;
+
+    cursor: pointer;
+
+}
+
+
+
+.product-list {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+
+}
+
+
+
+.product-list li {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 10px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    margin-top: 10px;
+
+    background-color: white;
+
+}
+
+
+
+.product-list li .delete-btn {
+
+    background: none;
+
+    border: none;
+
+    color: red;
+
+    font-size: 16px;
 
     cursor: pointer;
 
