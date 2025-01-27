@@ -1,265 +1,192 @@
+/* Styles généraux */
 body {
-
     font-family: Arial, sans-serif;
-
     margin: 0;
-
     padding: 0;
-
     background-color: #f9f9f9;
-
 }
-
-
 
 /* Barre du haut avec la bande bleue */
-
 .top-header {
-
     background-color: #007bff;
-
     color: white;
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     padding: 10px;
-
     position: sticky;
-
     top: 0;
-
     z-index: 1000;
-
 }
-
-
 
 .back-button {
-
     background: none;
-
     border: none;
-
     color: white;
-
     font-size: 18px;
-
     cursor: pointer;
-
     margin-right: 10px;
-
 }
-
-
 
 .title {
-
     flex-grow: 1;
-
     text-align: center;
-
     font-size: 18px;
-
     margin: 0;
-
 }
-
-
 
 .header-icon {
-
     width: 25px;
-
     height: 25px;
-
     margin-left: 10px;
-
 }
-
-
 
 /* Section Numérisation */
-
 .sync-section {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     padding: 15px;
-
 }
-
-
 
 .sync-title {
-
     font-size: 18px;
-
     margin: 0;
-
 }
-
-
 
 .help-icon {
-
     width: 30px;
-
     height: 30px;
-
 }
-
-
 
 /* Trait horizontal */
-
 .separator {
-
     border: none;
-
     border-top: 1px solid #ccc;
-
     margin: 0 15px;
-
 }
-
-
 
 /* Grille des modules */
-
 .modules {
-
     display: grid;
-
     grid-template-columns: repeat(2, 1fr);
-
     gap: 15px;
-
     padding: 15px;
-
 }
-
-
 
 .module {
-
     background-color: white;
-
     border-radius: 8px;
-
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
     text-align: center;
-
     padding: 15px;
-
     font-size: 16px;
-
     font-weight: bold;
-
     color: #333;
-
     cursor: pointer;
-
     transition: transform 0.3s;
-
 }
-
-
 
 .module:hover {
-
     transform: scale(1.05);
-
 }
-
-
 
 .module-icon {
-
     width: 80px;
-
     height: 80px;
-
     margin-bottom: 10px;
-
     object-fit: contain;
-
 }
 
-
-
-/* Media Query pour mobile */
-
+/* Media Queries pour Responsiveness */
+/* Petits appareils (téléphones ≤ 768px) */
 @media (max-width: 768px) {
-
     .title {
-
-        font-size: 16px; /* Réduction du texte */
-
+        font-size: 16px;
     }
-
-
 
     .header-icon {
-
         width: 20px;
-
-        height: 20px; /* Réduction des icônes */
-
+        height: 20px;
     }
-
-
 
     .sync-title {
-
-        font-size: 16px; /* Texte adapté */
-
+        font-size: 16px;
     }
-
-
 
     .help-icon {
-
         width: 25px;
-
         height: 25px;
-
     }
-
-
 
     .modules {
-
         grid-template-columns: 1fr; /* Modules en une seule colonne */
-
     }
-
-
 
     .module-icon {
-
         width: 60px;
-
-        height: 60px; /* Taille réduite des icônes */
-
+        height: 60px;
     }
-
-
 
     .module {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
 
-        font-size: 14px; /* Réduction du texte des modules */
-
-        padding: 10px; /* Réduction du padding */
-
+/* Tablettes (768px à 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .modules {
+        grid-template-columns: repeat(3, 1fr); /* 3 modules par ligne */
     }
 
+    .module-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .module {
+        font-size: 15px;
+        padding: 12px;
+    }
+}
+
+/* Grands écrans pliables ou ultra-larges (1025px et +) */
+@media (min-width: 1025px) {
+    .modules {
+        grid-template-columns: repeat(4, 1fr); /* 4 modules par ligne */
+        gap: 20px;
+    }
+
+    .module-icon {
+        width: 90px;
+        height: 90px;
+    }
+
+    .module {
+        font-size: 18px;
+        padding: 20px;
+    }
+
+    .help-icon {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Ultra-larges pliables (≥ 1600px) */
+@media (min-width: 1600px) {
+    .modules {
+        grid-template-columns: repeat(6, 1fr); /* 6 modules par ligne */
+    }
+
+    .module-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .module {
+        font-size: 20px;
+        padding: 25px;
+    }
 }
