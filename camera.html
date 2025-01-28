@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prendre une photo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-header {
+            background-color: #000;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: #fff;
+        }
+
+        .camera-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #photo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+        }
+
+        .camera-frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 60%;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .camera-controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .camera-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #capture-button {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background-color: #fff;
+            position: relative;
+        }
+
+        #capture-button::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border-radius: 50%;
+            border: 2px solid #000;
+        }
+
+        #switch-camera {
+            display: none;
+        }
+
+        .permission-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .permission-overlay.visible {
+            display: flex;
+        }
+
+        .permission-message {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        .permission-button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .permission-button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .camera-error {
+            color: #ef4444;
+            margin-top: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="permission-overlay" id="permission-overlay">
+        <div class="permission-message">
+            Pour prendre une photo de l'étiquette, nous avons besoin d'accéder à votre caméra. 
+            Veuillez autoriser l'accès lorsque votre navigateur vous le demandera.
+        </div>
+        <button class="permission-button" id="request-permission">
+            <i class="fas fa-camera"></i>
+            Autoriser la caméra
+        </button>
+        <div class="permission-message camera-error" id="camera-error">
+            L'accès à la caméra a été refusé. Pour continuer, veuillez autoriser l'accès à la caméra dans les paramètres de votre navigateur.
+        </div>
+    </div>
+
+    <header class="top-header">
+        <button class="back-button" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="camera-title">Photo de l'étiquette</div>
+        <div style="width: 40px;"></div>
+    </header>
+
+    <div class="camera-container">
+        <video id="video" autoplay playsinline></video>
+        <img id="photo" alt="Photo capturée">
+        <div class="camera-frame"></div>
+    </div>
+
+    <div class="camera-controls">
+        <button id="switch-camera" class="camera-button">
+            <i class="fas fa-sync-alt fa-2x"></i>
+        </button>
+        <button id="capture-button"></button>
+        <button id="confirm-button" class="camera-button" style="display: none;">
+            <i class="fas fa-check fa-2x"></i>
+        </button>
+        <button id="retry-button" class="camera-button" style="display: none;">
+            <i class="fas fa-redo fa-2x"></i>
+        </button>
+    </div>
+
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <script>
+        let stream = null;
+        let facingMode = 'environment';
+        let permissionRequested = false;
+        
+        const video = document.getElementById('video');
+        const photo = document.getElementById('photo');
+        const canvas = document.getElementById('canvas');
+        const captureButton = document.getElementById('capture-button');
+        const confirmButton = document.getElementById('confirm-button');
+        const retryButton = document.getElementById('retry-button');
+        const switchButton = document.getElementById('switch-camera');
+        const permissionOverlay = document.getElementById('permission-overlay');
+        const requestPermissionButton = document.getElementById('request-permission');
+        const cameraError = document.getElementById('camera-error');
+
+        function goBack() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            window.history.back();
+        }
+
+        async function checkCameraPermission() {
+            try {
+                const permissions = await navigator.permissions.query({ name: 'camera' });
+                
+                if (permissions.state === 'granted') {
+                    permissionOverlay.classList.remove('visible');
+                    initializeCamera();
+                } else if (permissions.state === 'prompt') {
+                    permissionOverlay.classList.add('visible');
+                } else if (permissions.state === 'denied') {
+                    permissionOverlay.classList.add('visible');
+                    cameraError.style.display = 'block';
+                    requestPermissionButton.style.display = 'none';
+                }
+            } catch (error) {
+                initializeCamera();
+            }
+        }
+
+        async function initializeCamera() {
+            try {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: facingMode,
+                        width: { ideal: 1920 },
+                        height: { ideal: 1080 }
+                    }
+                });
+
+                permissionOverlay.classList.remove('visible');
+                video.srcObject = stream;
+                await video.play();
+
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                if (videoDevices.length > 1) {
+                    switchButton.style.display = 'flex';
+                }
+
+            } catch (error) {
+                console.error("Erreur d'accès à la caméra:", error);
+                permissionOverlay.classList.add('visible');
+                
+                if (error.name === 'NotAllowedError') {
+                    cameraError.style.display = 'block';
+                    requestPermissionButton.style.display = 'none';
+                } else {
+                    alert("Une erreur est survenue lors de l'accès à la caméra.");
+                    goBack();
+                }
+            }
+        }
+
+        function takePhoto() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            photo.src = dataUrl;
+            
+            video.style.display = 'none';
+            photo.style.display = 'block';
+            captureButton.style.display = 'none';
+            switchButton.style.display = 'none';
+            confirmButton.style.display = 'flex';
+            retryButton.style.display = 'flex';
+        }
+
+        function retryPhoto() {
+            video.style.display = 'block';
+            photo.style.display = 'none';
+            captureButton.style.display = 'block';
+            if (document.querySelectorAll('video-input').length > 1) {
+                switchButton.style.display = 'flex';
+            }
+            confirmButton.style.display = 'none';
+            retryButton.style.display = 'none';
+        }
+
+        function confirmPhoto() {
+            localStorage.setItem('tempPhoto', photo.src);
+            goBack();
+        }
+
+        async function switchCamera() {
+            facingMode = facingMode === 'environment' ? 'user' : 'environment';
+            await initializeCamera();
+        }
+
+        requestPermissionButton.addEventListener('click', () => {
+            if (!permissionRequested) {
+                permissionRequested = true;
+                initializeCamera();
+            }
+        });
+
+        captureButton.addEventListener('click', takePhoto);
+        retryButton.addEventListener('click', retryPhoto);
+        confirmButton.addEventListener('click', confirmPhoto);
+        switchButton.addEventListener('click', switchCamera);
+
+        window.addEventListener('load', checkCameraPermission);
+    </script>
+</body>
+</html>

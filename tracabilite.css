@@ -1,0 +1,483 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 160px;
+}
+
+/* Header */
+.top-header {
+    background-color: #2563eb;
+    color: white;
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.75rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin: -0.5rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.header-icons {
+    display: flex;
+    gap: 1.25rem;
+    font-size: 1.5rem;
+}
+
+/* Search bar */
+.search-bar {
+    background-color: white;
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 4rem;
+    z-index: 99;
+}
+
+.search-icon {
+    color: #6b7280;
+    font-size: 1.25rem;
+    margin-right: -2rem;
+    z-index: 2;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.875rem 1rem 0.875rem 2.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 1.125rem;
+    margin-left: -1.5rem;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.scan-button,
+.add-button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 1.25rem;
+}
+
+.scan-button:hover,
+.add-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Category buttons */
+.button-group {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    position: sticky;
+    top: 8.5rem;
+    background: #f5f5f5;
+    z-index: 98;
+}
+
+.button-group::-webkit-scrollbar {
+    display: none;
+}
+
+.round-button {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.125rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.round-button:hover {
+    background-color: #f3f4f6;
+}
+
+.round-button.active {
+    background-color: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+/* Product list */
+.product-list {
+    padding: 1.25rem;
+    margin-bottom: 7rem;
+}
+
+.product-item {
+    background-color: white;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.product-link {
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-name {
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 0.75rem;
+    margin: -0.75rem;
+    font-size: 1.25rem;
+}
+
+.delete-button:hover {
+    color: #dc2626;
+}
+
+/* Bottom buttons */
+.bottom-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.25rem;
+    background-color: white;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 1rem;
+    z-index: 1000;
+}
+
+.square-button {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.square-button.primary {
+    background-color: #2563eb;
+    color: white;
+}
+
+.square-button.primary:hover {
+    background-color: #1d4ed8;
+}
+
+.square-button.secondary {
+    background-color: #2563eb;
+    color: white;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+.square-button.secondary:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
+    }
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin: -0.5rem;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #374151;
+    font-size: 1.125rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.875rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 1.125rem;
+    transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 0.875rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.125rem;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+}
+
+.btn-secondary:hover {
+    background-color: #f3f4f6;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    bottom: 7rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    background-color: #10b981;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.125rem;
+    font-weight: 500;
+    z-index: 1001;
+}
+
+.notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* Scanner container */
+.scanner-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 2000;
+}
+
+.close-scanner {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.875rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+
+/* No products message */
+.no-products-message {
+    text-align: center;
+    color: #6b7280;
+    padding: 2rem;
+    font-style: italic;
+    font-size: 1.125rem;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+    .title {
+        font-size: 1.25rem;
+    }
+
+    .search-input {
+        font-size: 1rem;
+    }
+
+    .round-button {
+        padding: 0.875rem 1.25rem;
+        font-size: 1rem;
+    }
+
+    .product-name {
+        font-size: 1rem;
+    }
+
+    .square-button {
+        font-size: 1rem;
+        height: 3rem;
+    }
+
+    .modal-content {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 1rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        font-size: 1rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .round-button:active {
+        background-color: #f3f4f6;
+    }
+
+    .round-button.active:active {
+        background-color: #1d4ed8;
+    }
+
+    .square-button:active {
+        transform: scale(0.98);
+    }
+
+    .delete-button:active {
+        color: #dc2626;
+    }
+}

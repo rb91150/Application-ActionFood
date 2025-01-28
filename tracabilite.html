@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Traqfood</title>
+    <link rel="stylesheet" href="tracabilite.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+</head>
+<body>
+    <header class="top-header">
+        <button class="back-button" onclick="window.history.back()">←</button>
+        <h1 class="title">Traçabilités</h1>
+        <div class="header-icons">
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-user"></i>
+        </div>
+    </header>
+
+    <div class="search-bar">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" placeholder="Rechercher..." class="search-input">
+        <button class="scan-button" onclick="scannerFunction()">
+            <i class="fas fa-qrcode"></i>
+        </button>
+        <button class="add-button" onclick="openAddProductModal()">+</button>
+    </div>
+
+    <div class="button-group">
+        <button class="round-button active" data-category="indifferent" onclick="showProducts('indifferent')">Indifférent</button>
+        <button class="round-button" data-category="frais" onclick="showProducts('frais')">Frais</button>
+        <button class="round-button" data-category="surgelé" onclick="showProducts('surgelé')">Surgelé</button>
+        <button class="round-button" data-category="sec" onclick="showProducts('sec')">Sec</button>
+        <button class="round-button" data-category="autres" onclick="showProducts('autres')">Autres</button>
+        <button class="round-button" data-category="recette" onclick="showProducts('recette')">Recette</button>
+    </div>
+
+    <div id="product-list" class="product-list"></div>
+    <div id="message-container" class="no-products-message"></div>
+
+    <div class="bottom-buttons">
+        <button class="square-button primary" onclick="saveAndPrint()">Enregistrer et Imprimer</button>
+        <button class="square-button secondary" onclick="finishInput()">Terminer la saisie</button>
+    </div>
+
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ajouter un produit</h2>
+                <button class="close-modal" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="addProductForm" class="modal-form">
+                <div class="form-group">
+                    <label for="productName">Nom du produit</label>
+                    <input type="text" id="productName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="measurementType">Type de mesure</label>
+                    <select id="measurementType" onchange="updateUnitOptions()">
+                        <option value="poids">Poids</option>
+                        <option value="volume">Volume</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="measurementValue">Valeur</label>
+                    <input type="number" id="measurementValue" required min="0" step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label for="measurementUnit">Unité</label>
+                    <select id="measurementUnit" required>
+                        <option value="g">g</option>
+                        <option value="kg">kg</option>
+                        <option value="L">L</option>
+                        <option value="ml">ml</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Annuler</button>
+                    <button type="submit" class="btn-primary">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script>
+        let productData = {
+            'indifferent': [],
+            'frais': [],
+            'surgelé': [],
+            'sec': [],
+            'autres': [],
+            'recette': []
+        };
+
+        let currentCategory = 'indifferent';
+        let qrCodeScanner;
+
+        window.onload = function() {
+            loadProductsFromLocalStorage();
+            setupEventListeners();
+            checkForReturnedProduct();
+        };
+
+        function setupEventListeners() {
+            document.getElementById('addProductForm').addEventListener('submit', handleAddProduct);
+            document.querySelector('.search-input').addEventListener('input', handleSearch);
+        }
+
+        function checkForReturnedProduct() {
+            const productDetails = localStorage.getItem('productDetails');
+            if (productDetails) {
+                const details = JSON.parse(productDetails);
+                updateProductWithDetails(details);
+                localStorage.removeItem('productDetails');
+            }
+        }
+
+        function updateProductWithDetails(details) {
+            const category = details.category;
+            const productIndex = productData[category].findIndex(p => p.name === details.name);
+            
+            if (productIndex !== -1) {
+                productData[category][productIndex] = {
+                    ...productData[category][productIndex],
+                    quantity: details.quantity,
+                    dlc: details.dlc,
+                    lotNumber: details.lotNumber,
+                    photoSrc: details.photoSrc,
+                    isCompleted: true
+                };
+                saveProductsToLocalStorage();
+                showProducts(currentCategory);
+            }
+        }
+
+        function loadProductsFromLocalStorage() {
+            const savedData = localStorage.getItem('productData');
+            if (savedData) {
+                productData = JSON.parse(savedData);
+            }
+            showProducts(currentCategory);
+        }
+
+        function saveProductsToLocalStorage() {
+            localStorage.setItem('productData', JSON.stringify(productData));
+        }
+
+        function showProducts(category) {
+            currentCategory = category;
+            const productList = document.getElementById('product-list');
+            const messageContainer = document.getElementById('message-container');
+            productList.innerHTML = '';
+            messageContainer.innerHTML = '';
+
+            document.querySelectorAll('.round-button').forEach(button => {
+                button.classList.toggle('active', button.dataset.category === category);
+            });
+
+            const products = productData[category];
+            if (products.length > 0) {
+                products.forEach((product, index) => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'product-item';
+                    
+                    if (product.isCompleted) {
+                        productItem.innerHTML = `
+                            <div class="product-details completed">
+                                <div class="product-name">${product.name}</div>
+                                <div class="product-info">
+                                    <div>Quantité: ${product.quantity} ${product.measurement.unit}</div>
+                                    ${product.dlc ? `<div>DLC: ${product.dlc}</div>` : ''}
+                                    ${product.lotNumber ? `<div>Lot: ${product.lotNumber}</div>` : ''}
+                                </div>
+                                ${product.photoSrc ? `<img src="${product.photoSrc}" alt="Photo du produit" class="product-photo">` : ''}
+                            </div>
+                        `;
+                    } else {
+                        productItem.innerHTML = `
+                            <a href="product-detail.html?product=${encodeURIComponent(product.name)}&category=${category}" class="product-link">
+                                <span class="product-name">${product.name} (${product.measurement.value} ${product.measurement.unit})</span>
+                            </a>
+                            <button class="delete-button" onclick="event.stopPropagation(); deleteProduct('${category}', ${index})">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        `;
+                    }
+                    
+                    productList.appendChild(productItem);
+                });
+            } else {
+                messageContainer.innerHTML = 'Aucun produit trouvé dans cette catégorie.';
+            }
+        }
+
+        function handleAddProduct(e) {
+            e.preventDefault();
+            const form = e.target;
+            const product = {
+                name: form.productName.value,
+                measurement: {
+                    type: form.measurementType.value,
+                    value: parseFloat(form.measurementValue.value),
+                    unit: form.measurementUnit.value
+                }
+            };
+
+            if (product.name && product.measurement.value > 0) {
+                productData[currentCategory].push(product);
+                saveProductsToLocalStorage();
+                showProducts(currentCategory);
+                closeModal();
+                showNotification('Produit ajouté avec succès !');
+                form.reset();
+            }
+        }
+
+        function handleSearch(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            Object.entries(productData).forEach(([category, products]) => {
+                const filteredProducts = products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm)
+                );
+                if (category === currentCategory) {
+                    showFilteredProducts(filteredProducts);
+                }
+            });
+        }
+
+        function showFilteredProducts(products) {
+            const productList = document.getElementById('product-list');
+            const messageContainer = document.getElementById('message-container');
+            productList.innerHTML = '';
+            messageContainer.innerHTML = '';
+
+            if (products.length > 0) {
+                products.forEach((product, index) => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'product-item';
+                    if (product.isCompleted) {
+                        productItem.innerHTML = `
+                            <div class="product-details completed">
+                                <div class="product-name">${product.name}</div>
+                                <div class="product-info">
+                                    <div>Quantité: ${product.quantity} ${product.measurement.unit}</div>
+                                    ${product.dlc ? `<div>DLC: ${product.dlc}</div>` : ''}
+                                    ${product.lotNumber ? `<div>Lot: ${product.lotNumber}</div>` : ''}
+                                </div>
+                                ${product.photoSrc ? `<img src="${product.photoSrc}" alt="Photo du produit" class="product-photo">` : ''}
+                            </div>
+                        `;
+                    } else {
+                        productItem.innerHTML = `
+                            <a href="product-detail.html?product=${encodeURIComponent(product.name)}&category=${currentCategory}" class="product-link">
+                                <span class="product-name">${product.name} (${product.measurement.value} ${product.measurement.unit})</span>
+                            </a>
+                            <button class="delete-button" onclick="event.stopPropagation(); deleteProduct('${currentCategory}', ${index})">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        `;
+                    }
+                    productList.appendChild(productItem);
+                });
+            } else {
+                messageContainer.innerHTML = 'Aucun produit trouvé dans cette catégorie.';
+            }
+        }
+
+        function deleteProduct(category, index) {
+            if (confirm('Voulez-vous vraiment supprimer ce produit ?')) {
+                productData[category].splice(index, 1);
+                saveProductsToLocalStorage();
+                showProducts(category);
+                showNotification('Produit supprimé !');
+            }
+        }
+
+        function openAddProductModal() {
+            document.getElementById('addProductModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('addProductModal').style.display = 'none';
+        }
+
+        function updateUnitOptions() {
+            const measurementType = document.getElementById('measurementType').value;
+            const unitSelect = document.getElementById('measurementUnit');
+            unitSelect.innerHTML = '';
+            
+            if (measurementType === 'poids') {
+                unitSelect.innerHTML = `
+                    <option value="g">g</option>
+                    <option value="kg">kg</option>
+                `;
+            } else {
+                unitSelect.innerHTML = `
+                    <option value="ml">ml</option>
+                    <option value="L">L</option>
+                `;
+            }
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function saveAndPrint() {
+            showNotification('Enregistrement et impression effectués !');
+        }
+
+        function finishInput() {
+            showNotification('Saisie terminée !');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('addProductModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>
