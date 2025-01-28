@@ -1,151 +1,76 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Date de consommation</title>
-
-    <link rel="stylesheet" href="tt.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date de consommation</title>
+    <link rel="stylesheet" href="tt.css">
 </head>
-
 <body>
 
-        <!-- Barre du haut avec la bande bleue -->
-    <header class="top-header">
-        </div>
-    </header>
-    
-
-    <!-- Barre supérieure -->
-
-    <header class="top-header">
-
-        <button class="back-button">← Retour</button>
-
-        <h1 class="title">Traçabilités</h1>
-
-        <div class="header-icons">
-
-            <img src="wifi-transparent-1371033_640.webp" alt="Connexion" class="header-icon">
-
-            <img src="unnamed.png" alt="Compte" class="header-icon">
-
-        </div>
-
-    </header>
-
-
-
-    <!-- Conteneur principal -->
-
-    <div class="container">
-
-        <h1>Date de consommation</h1>
-
-        <hr class="divider">
-
-
-
-        <!-- Produit ouvert le -->
-
-        <div class="product-opened">
-
-            <label for="date-consommation">
-
-                <img src="unnamed.jpg" class="label-icon"> Produit(s) ouvert(s) le :
-
-            </label>
-
-            <input type="date" id="date-consommation" name="date-consommation">
-
-        </div>
-
-
-
-        <!-- Produit ouvert à -->
-
-        <div class="product-opened">
-
-            <label for="heure-consommation">
-
-                <img src="unnamed.jpg" class="label-icon"> Produit(s) ouvert(s) à :
-
-            </label>
-
-            <input type="time" id="heure-consommation" name="heure-consommation">
-
-        </div>
-
-
-
-        <!-- Section Service -->
-
-        <div class="service-section">
-
-            <h2>Service</h2>
-
-            <hr class="divider">
-
-            <div class="service-buttons">
-
-                <label class="button">
-
-                    <input type="radio" name="service-time" value="Matin">
-
-                    <img src="IMG_9517.jpeg" class="service-icon"> Matin
-
-                </label>
-
-                <label class="button">
-
-                    <input type="radio" name="service-time" value="Midi">
-
-                    <img src="IMG_9518.jpeg" class="service-icon"> Midi
-
-                </label>
-
-                <label class="button">
-
-                    <input type="radio" name="service-time" value="Soir">
-
-                    <img src="IMG_9520.jpeg" class="service-icon"> Soir
-
-                </label>
-
-                <label class="button">
-
-                    <input type="radio" name="service-time" value="Indifférent">
-
-                    <img src="IMG_9519.jpeg" class="service-icon"> Indifférent
-
-                </label>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- Bouton Prochaine étape -->
-
-        <div class="next-step-container">
-
-            <button class="next-step-button" onclick="nextStep()">Prochaine étape</button>
-
-        </div>
-
-    </div>
-
-
-
-    <script src="script.js"></script>
+    <!-- Barre supérieure -->
+    <header class="top-header">
+        <button class="back-button" onclick="window.location.href='App.html'">← Retour</button>
+        <h1 class="title">Traçabilités</h1>
+        <div class="header-icons">
+            <img src="wifi-transparent-1371033_640.webp" alt="Connexion" class="header-icon">
+            <img src="unnamed.png" alt="Compte" class="header-icon">
+        </div>
+    </header>
+
+    <!-- Conteneur principal -->
+    <div class="container">
+        <h1>Date de consommation</h1>
+        <hr class="divider">
+
+        <!-- Produit ouvert le -->
+        <div class="product-opened">
+            <label for="date-consommation">
+                <img src="unnamed.jpg" class="label-icon"> Produit(s) ouvert(s) le :
+            </label>
+            <input type="date" id="date-consommation" name="date-consommation">
+        </div>
+
+        <!-- Produit ouvert à -->
+        <div class="product-opened">
+            <label for="heure-consommation">
+                <img src="unnamed.jpg" class="label-icon"> Produit(s) ouvert(s) à :
+            </label>
+            <input type="time" id="heure-consommation" name="heure-consommation">
+        </div>
+
+        <!-- Section Service -->
+        <div class="service-section">
+            <h2>Service</h2>
+            <hr class="divider">
+            <div class="service-buttons">
+                <label class="button">
+                    <input type="radio" name="service-time" value="Matin">
+                    <img src="IMG_9517.jpeg" class="service-icon"> Matin
+                </label>
+                <label class="button">
+                    <input type="radio" name="service-time" value="Midi">
+                    <img src="IMG_9518.jpeg" class="service-icon"> Midi
+                </label>
+                <label class="button">
+                    <input type="radio" name="service-time" value="Soir">
+                    <img src="IMG_9520.jpeg" class="service-icon"> Soir
+                </label>
+                <label class="button">
+                    <input type="radio" name="service-time" value="Indifférent">
+                    <img src="IMG_9519.jpeg" class="service-icon"> Indifférent
+                </label>
+            </div>
+        </div>
+
+        <!-- Bouton Prochaine étape -->
+        <div class="next-step-container">
+            <button class="next-step-button" onclick="nextStep()">Prochaine étape</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
-
 </html>
