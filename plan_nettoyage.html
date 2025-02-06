@@ -1,127 +1,80 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Plan de Nettoyage</title>
-
     <link rel="stylesheet" href="plan_nettoyage.css">
-
 </head>
-
 <body>
-
-    <!-- Barre du haut -->
-
-    <header>
-
-        <div class="top-bar">
-
-            <button class="back-button" onclick="window.location.href='index.html'">Retour</button>
-
-            <h1 class="title">Plan de nettoyage</h1>
-
-            <div class="header-icons">
-
-                <img src="wifi-transparent-1371033_640.webp" alt="Wifi Icon" class="header-icon">
-
-                <img src="unnamed.png" alt="User Icon" class="header-icon">
-
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <div class="top-bar">
+                <button class="back-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                </button>
+                <h1 class="title">Plan de nettoyage</h1>
+                <div class="header-icons">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
             </div>
+        </header>
 
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Le contenu sera généré dynamiquement par JavaScript -->
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <button class="finish-button" disabled>Terminer</button>
+        </footer>
+
+        <!-- Modals -->
+        <div class="zone-modal" style="display: none;">
+            <div class="modal">
+                <h3>Ajouter une zone de nettoyage</h3>
+                <div class="modal-input">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/>
+                    </svg>
+                    <input type="text" placeholder="Nom">
+                </div>
+                <div class="modal-actions">
+                    <button class="cancel">Annuler</button>
+                    <button class="save">Enregistrer</button>
+                </div>
+            </div>
         </div>
 
-    </header>
-
-
-
-    <!-- Contenu principal -->
-
-    <main>
-
-        <section class="action-date">
-
-            <h2>Date de l'action de nettoyage <span class="help-icon">?</span></h2>
-
-            <div class="date-time-section">
-
-                <div class="date">
-
-                    <img src="unnamed.jpg" alt="Lock Icon" class="icon">
-
-                    <label for="date">Date</label>
-
-                    <input type="date" id="date" value="2025-01-14">
-
+        <div class="post-modal" style="display: none;">
+            <div class="modal">
+                <h3>Ajouter un poste de nettoyage</h3>
+                <div class="modal-input">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/>
+                    </svg>
+                    <input type="text" placeholder="Nom du poste">
                 </div>
-
-                <div class="time">
-
-                    <img src="IMG_9603.jpeg" alt="Clock Icon" class="icon">
-
-                    <label for="time">Heure</label>
-
-                    <input type="time" id="time" value="19:22">
-
+                <div class="modal-actions">
+                    <button class="cancel">Annuler</button>
+                    <button class="save">Enregistrer</button>
                 </div>
-
             </div>
-
-        </section>
-
-
-
-        <section class="zone-list">
-
-            <h2>Liste des zones à nettoyer</h2>
-
-            <p>Appuyez sur les zones de nettoyage pour indiquer les postes nettoyés</p>
-
-            <div class="toggle-container">
-
-                <label for="edit-mode" class="toggle-label">Modifier</label>
-
-                <input type="checkbox" id="edit-mode">
-
-                <span class="toggle"></span>
-
-            </div>
-
-            <ul class="zones">
-
-                <li>A - Cuisine Quotidien</li>
-
-                <li>B - Cuisine Hebdo</li>
-
-                <li>C - Zone de Stockage</li>
-
-            </ul>
-
-            <button class="add-zone" onclick="addZone()">+ Ajouter une zone de nettoyage</button>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- Bouton Terminer -->
-
-    <footer>
-
-        <button class="finish-button" onclick="saveData()">Terminer</button>
-
-    </footer>
-
-
+        </div>
+    </div>
 
     <script src="plan_nettoyage.js"></script>
-
 </body>
-
 </html>

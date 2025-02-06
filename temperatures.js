@@ -216,7 +216,7 @@ function openHelpModal() {
 }
 
 function openProfileModal() {
-    document.getElementById('current-user').textContent = 'John Doe'; // À remplacer par l'utilisateur réel
+    document.getElementById('current-user').textContent = 'Monsieur X'; // À remplacer par l'utilisateur réel
     openModal('profile-modal');
 }
 

@@ -1,197 +1,111 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Checklist</title>
-
-    <link rel="stylesheet" href="checklist.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#4285f4">
+  <title>Checklist Hygiène</title>
+  <link rel="stylesheet" href="checklist.css">
 </head>
-
 <body>
-
-    <!-- Barre du haut -->
-
-    <header class="top-bar">
-
-        <button class="back-button" onclick="window.location.href='index.html'">Retour</button>
-
-        <h1 class="title">Checklist</h1>
-
-        <div class="header-icons">
-
-            <img src="wifi-transparent-1371033_640.webp" alt="Wifi Icon" class="header-icon">
-
-            <img src="unnamed.png" alt="User Icon" class="header-icon">
-
-        </div>
-
+  <div class="app">
+    <header class="header">
+      <button class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Retour
+      </button>
+      <h1>Checklist</h1>
+      <div class="header-icons">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+          <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+          <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+          <line x1="12" y1="20" x2="12.01" y2="20"/>
+        </svg>
+        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
     </header>
 
-
-
-    <!-- Contenu principal -->
-
-    <main>
-
-        <section class="checklist-section">
-
-            <h2>Ma checklist hygiène</h2>
-
-
-
-            <!-- Date et heure -->
-
-            <div class="date-time">
-
-                <div class="date">
-
-                    <img src="unnamed.jpg" alt="Calendar Icon">
-
-                    <label for="date">Relevé le</label>
-
-                    <input type="date" id="date" value="2025-01-15">
-
-                </div>
-
-                <div class="time">
-
-                    <img src="unnamed.jpg" alt="Clock Icon">
-
-                    <label for="time">Fait à</label>
-
-                    <input type="time" id="time" value="15:52">
-
-                </div>
-
-            </div>
-
-
-
-            <!-- Points de contrôle -->
-
-            <h3>Points de contrôle</h3>
-
-            <ul class="control-points">
-
-                <li>
-
-                    <span>DLC des produits vérifiées dans mes frigos/congel</span>
-
-                    <div class="options">
-
-                        <button class="option-btn">Non</button>
-
-                        <button class="option-btn">Oui</button>
-
-                        <button class="edit-btn">Non évalué</button>
-
-                    </div>
-
-                </li>
-
-                <li>
-
-                    <span>Le personnel de cuisine ne porte pas de bijoux/montre</span>
-
-                    <div class="options">
-
-                        <button class="option-btn">Non</button>
-
-                        <button class="option-btn">Oui</button>
-
-                        <button class="edit-btn">Non évalué</button>
-
-                    </div>
-
-                </li>
-
-                <li>
-
-                    <span>Le personnel de cuisine porte une tenue propre</span>
-
-                    <div class="options">
-
-                        <button class="option-btn">Non</button>
-
-                        <button class="option-btn">Oui</button>
-
-                        <button class="edit-btn">Non évalué</button>
-
-                    </div>
-
-                </li>
-
-                <li>
-
-                    <span>Pas de cartons en zone de stockage</span>
-
-                    <div class="options">
-
-                        <button class="option-btn">Non</button>
-
-                        <button class="option-btn">Oui</button>
-
-                        <button class="edit-btn">Non évalué</button>
-
-                    </div>
-
-                </li>
-
-                <li>
-
-                    <span>Pas de stockage au sol</span>
-
-                    <div class="options">
-
-                        <button class="option-btn">Non</button>
-
-                        <button class="option-btn">Oui</button>
-
-                        <button class="edit-btn">Non évalué</button>
-
-                    </div>
-
-                </li>
-
-                <li>
-
-                    <span>Tous les produits entamés sont filmés/étiquetés</span>
-
-                    <div class="options">
-
-                        <button class="option-btn">Non</button>
-
-                        <button class="option-btn">Oui</button>
-
-                        <button class="edit-btn">Non évalué</button>
-
-                    </div>
-
-                </li>
-
-            </ul>
-
-
-
-            <!-- Bouton Valider -->
-
-            <button class="validate-btn" onclick="validateChecklist()">Valider les contrôles</button>
-
-        </section>
-
+    <main class="content">
+      <h2>Checklist</h2>
+      <h3>Ma checklist hygiène</h3>
+
+      <div class="date-section">
+        <h4>Date</h4>
+        <div class="date-inputs">
+          <div class="input-group">
+            <label>Relevé le</label>
+            <input type="date" class="date-input">
+            <span class="lock-icon">🔒</span>
+          </div>
+          <div class="input-group">
+            <label>Fait à</label>
+            <input type="time" class="time-input">
+            <span class="lock-icon">🔒</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist-section">
+        <h4>Points de contrôle</h4>
+        <div class="checklist-items">
+          <!-- Les items seront générés par JavaScript -->
+        </div>
+      </div>
+
+      <button class="validate-btn" disabled>Valider les contrôles</button>
     </main>
 
+    <div class="comment-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Ajouter un commentaire</h3>
+          <button class="close-btn">&times;</button>
+        </div>
+        <textarea placeholder="Votre commentaire..." inputmode="text"></textarea>
+        <div class="modal-footer">
+          <button class="cancel-btn">Annuler</button>
+          <button class="save-btn">Enregistrer</button>
+        </div>
+      </div>
+    </div>
 
+    <div class="user-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Changer d'utilisateur</h3>
+          <button class="close-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="user-info">
+          <p>Vous êtes actuellement connecté en tant que sur Monsieur X</p>
+        </div>
+        <button class="disconnect-btn">Déconnexion</button>
+      </div>
+    </div>
 
-    <script src="checklist.js"></script>
-
+    <input type="file" id="camera-input" accept="image/*" capture="environment" hidden>
+    <div class="photo-viewer">
+      <button class="close-photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <img src="" alt="Photo en plein écran">
+    </div>
+  </div>
+  <script src="checklist.js"></script>
 </body>
-
 </html>

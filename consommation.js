@@ -45,9 +45,11 @@ nextStepButton.addEventListener('click', () => {
         return;
     }
     
-    console.log('Form submitted:', {
-        openDate: openDateInput.value,
-        openTime: openTimeInput.value,
-        service: selectedService
-    });
+    // Store the data in localStorage for the next page
+    localStorage.setItem('openDate', openDateInput.value);
+    localStorage.setItem('openTime', openTimeInput.value);
+    localStorage.setItem('selectedService', selectedService);
+    
+    // Navigate to the selection page
+    window.location.href = 'selection.html';
 });
