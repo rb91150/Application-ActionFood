@@ -1,149 +1,217 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#4285f4">
-  <title>Checklist Hygiène</title>
-  <link rel="stylesheet" href="huiles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrôle d'huile</title>
+    <link rel="stylesheet" href="huiles.css">
 </head>
 <body>
-  <div class="app">
-    <header class="header">
-      <button class="back-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-        Retour
-      </button>
-      <h1>Checklist</h1>
-      <div class="header-icons">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-          <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-          <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
-          <line x1="12" y1="20" x2="12.01" y2="20"/>
-        </svg>
-        <svg class="user-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-      </div>
-    </header>
+    <div class="app">
+        <header>
+            <button class="back-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
+                </svg>
+            </button>
+            <h1>Contrôle d'huile</h1>
+            <div class="header-icons">
+                <button class="icon-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button class="icon-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
 
-    <main class="content">
-      <h2>Checklist</h2>
-      <h3>Ma checklist hygiène</h3>
+        <main>
+            <h2>Date du relevé d'huile</h2>
+            <div class="datetime-section">
+                <button class="date-btn">
+                    <span>6 févr. 2025</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button class="time-btn">
+                    <span>14:21</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" fill="currentColor"/>
+                        <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
 
-      <div class="date-section">
-        <h4>Date</h4>
-        <div class="date-inputs">
-          <div class="input-group">
-            <label>Relevé le</label>
-            <input type="date" class="date-input">
-            <span class="lock-icon">🔒</span>
-          </div>
-          <div class="input-group">
-            <label>Fait à</label>
-            <input type="time" class="time-input">
-            <span class="lock-icon">🔒</span>
-          </div>
-        </div>
-      </div>
+            <div class="section-header">
+                <h2>Équipements</h2>
+                <a href="#" class="modify-link">Modifier la liste</a>
+            </div>
 
-      <div class="checklist-section">
-        <div class="section-header">
-          <h4>Points de contrôle</h4>
-          <label class="edit-toggle">
-            <input type="checkbox" class="edit-mode-toggle">
-            <span class="toggle-slider"></span>
-            <span class="toggle-label">Mode édition</span>
-          </label>
-        </div>
-        <div class="checklist-items">
-          <!-- Les items seront générés par JavaScript -->
-        </div>
-      </div>
+            <div class="equipment-list">
+                <label class="checkbox-container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    <span>Friteuse</span>
+                </label>
+            </div>
 
-      <button class="validate-btn">Valider les contrôles</button>
-      <button class="add-item-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="12" y1="5" x2="12" y2="19"></line>
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-        </svg>
-        Ajouter un point de contrôle
-      </button>
-    </main>
+            <div class="empty-state" style="display: none;">
+                <button class="add-first-equipment-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/>
+                    </svg>
+                    Ajouter un équipement
+                </button>
+            </div>
 
-    <div class="comment-modal">
-      <div class="modal-content">
+            <div class="control-type-section" style="display: block;">
+                <button class="control-type-btn">
+                    <span>Sélectionnez le type de contrôle</span>
+                    <div class="control-type-icons">
+                        <svg class="chevron-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 10l5 5 5-5H7z" fill="currentColor"/>
+                        </svg>
+                        <svg class="note-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                </button>
+                <div class="control-type-menu" style="display: none;">
+                    <div class="menu-item">
+                        <span>Sélectionnez le type de contrôle</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="menu-item">Changement + nettoyage</div>
+                    <div class="menu-item">Collecte</div>
+                    <div class="menu-item">Filtration</div>
+                    <div class="menu-item">Languette</div>
+                    <div class="menu-item">Test visuel</div>
+                </div>
+            </div>
+
+            <button class="btn-primary validate-btn">Valider</button>
+        </main>
+    </div>
+
+    <div class="modal equipment-list-modal" id="equipmentListModal">
         <div class="modal-header">
-          <h3>Ajouter un commentaire</h3>
-          <button class="close-btn">&times;</button>
+            <button class="modal-close">Fermer</button>
+            <h2 class="modal-title">Liste des équipements</h2>
         </div>
-        <textarea placeholder="Votre commentaire..." inputmode="text"></textarea>
-        <div class="modal-footer">
-          <button class="cancel-btn">Annuler</button>
-          <button class="save-btn">Enregistrer</button>
+        <div class="equipment-items">
+            <div class="equipment-item">
+                <span class="equipment-name">Friteuse</span>
+                <div class="equipment-actions">
+                    <button class="action-btn edit-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <button class="action-btn delete-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
+        <button class="add-equipment-btn" id="addEquipmentBtn">Ajouter un équipement</button>
     </div>
 
-    <div class="edit-item-modal">
-      <div class="modal-content">
+    <div class="modal new-equipment-modal" id="newEquipmentModal">
         <div class="modal-header">
-          <h3>Modifier le point de contrôle</h3>
-          <button class="close-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
+            <button class="btn-cancel">Annuler</button>
+            <button class="btn-add">Ajouter</button>
         </div>
-        <div class="modal-body">
-          <input type="text" class="edit-item-input" placeholder="Intitulé du point de contrôle">
+        <div class="modal-content">
+            <h2>Nouvel équipement</h2>
+            
+            <div class="input-group">
+                <div class="input-label">
+                    <span>Nom</span>
+                    <span class="required">Obligatoire</span>
+                </div>
+                <input type="text" class="input-field" id="equipmentName">
+            </div>
+
+            <div class="equipment-state">
+                <div class="state-header">
+                    <h3>État de l'équipement</h3>
+                    <span class="state-status">Activé</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="newEquipmentStateToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="range-section" id="newTemperatureSection">
+                <div class="range-header">
+                    <h3>Température</h3>
+                    <div class="toggle-container">
+                        <span class="toggle-status">Activé</span>
+                        <label class="switch">
+                            <input type="checkbox" id="temperatureToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="range-values">
+                    <div class="range-value">
+                        <div class="range-label">Température min</div>
+                        <div class="range-input-container">
+                            <input type="number" class="range-input" value="0" min="0" max="180">
+                            <span class="range-unit">°C</span>
+                        </div>
+                    </div>
+                    <div class="range-value">
+                        <div class="range-label">Température max</div>
+                        <div class="range-input-container">
+                            <input type="number" class="range-input" value="180" min="0" max="180">
+                            <span class="range-unit">°C</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="range-section" id="newPolaritySection">
+                <div class="range-header">
+                    <h3>Polarité</h3>
+                    <div class="toggle-container">
+                        <span class="toggle-status">Activé</span>
+                        <label class="switch">
+                            <input type="checkbox" id="polarityToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="range-values">
+                    <div class="range-value">
+                        <div class="range-label">Polarité min</div>
+                        <div class="range-input-container">
+                            <input type="number" class="range-input" value="0" min="0" max="100">
+                            <span class="range-unit">%</span>
+                        </div>
+                    </div>
+                    <div class="range-value">
+                        <div class="range-label">Polarité max</div>
+                        <div class="range-input-container">
+                            <input type="number" class="range-input" value="25" min="0" max="100">
+                            <span class="range-unit">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button class="delete-btn">Supprimer</button>
-          <div class="right-buttons">
-            <button class="cancel-btn">Annuler</button>
-            <button class="save-btn">Enregistrer</button>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <div class="user-modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Changer d'utilisateur</h3>
-          <button class="close-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-        <div class="user-info">
-          <p>Vous êtes actuellement connecté en tant que Monsieur X</p>
-        </div>
-        <button class="disconnect-btn">Déconnexion</button>
-      </div>
-    </div>
-
-    <input type="file" id="camera-input" accept="image/*" capture="environment" hidden>
-    <div class="photo-viewer">
-      <button class="close-photo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-      <img src="" alt="Photo en plein écran">
-    </div>
-  </div>
-  <script src="huiles.js"></script>
+    <script src="huiles.js"></script>
 </body>
 </html>

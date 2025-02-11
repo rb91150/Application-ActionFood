@@ -9,36 +9,32 @@
     user-select: none;
   }
   
-  /* Permettre la sélection du texte dans les zones de saisie */
   input, textarea {
     -webkit-user-select: text;
     user-select: text;
   }
   
-  /* Désactiver le zoom sur iOS */
   @supports (-webkit-touch-callout: none) {
     input, textarea {
       font-size: 16px;
     }
   }
   
+  body {
+    background: #f5f5f5;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
   .app {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    background: #f5f5f5;
+    background: #fff;
     min-height: 100vh;
     min-height: -webkit-fill-available;
-    position: relative;
-    overflow-x: hidden;
-  }
-  
-  /* Support de la barre d'état iOS */
-  @supports (padding-top: env(safe-area-inset-top)) {
-    .app {
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-    }
+    display: flex;
+    flex-direction: column;
   }
   
   .header {
@@ -52,15 +48,6 @@
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-  }
-  
-  /* Support de la barre d'état iOS */
-  @supports (padding-top: env(safe-area-inset-top)) {
-    .header {
-      padding-top: max(1rem, env(safe-area-inset-top));
-    }
   }
   
   .back-btn {
@@ -74,7 +61,7 @@
     padding: 0.5rem;
     font-size: 0.9rem;
     transition: opacity 0.2s;
-    min-height: 44px; /* Pour iOS */
+    min-height: 44px;
   }
   
   .back-btn:active {
@@ -106,38 +93,35 @@
     height: 20px;
     stroke-width: 2;
     opacity: 0.9;
+    cursor: pointer;
   }
   
   .content {
-    padding: 1rem;
-    max-width: 100%;
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+    flex: 1;
+    padding: 1.5rem;
+    background: #f5f5f5;
+    overflow-y: auto;
   }
   
   h2 {
-    text-align: center;
     color: #333;
     margin-bottom: 1rem;
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: 1.5rem;
+    text-align: center;
   }
   
   h3 {
     color: #666;
     margin-bottom: 2rem;
-    font-size: clamp(1rem, 4vw, 1.25rem);
-  }
-  
-  h4 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-size: clamp(1rem, 3.5vw, 1.1rem);
+    font-size: 1.1rem;
+    text-align: center;
   }
   
   .date-section {
     background: white;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 12px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
@@ -151,7 +135,6 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    flex-wrap: wrap;
   }
   
   .input-group label {
@@ -162,28 +145,82 @@
   
   .input-group input {
     flex: 1;
-    min-width: 120px;
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 8px;
     background: #f9f9f9;
-    font-size: 16px; /* Pour éviter le zoom sur iOS */
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  
-  /* Style spécifique pour les inputs date/time sur iOS */
-  @supports (-webkit-touch-callout: none) {
-    input[type="date"],
-    input[type="time"] {
-      min-height: 44px;
-      line-height: 44px;
-    }
+    font-size: 0.9rem;
   }
   
   .lock-icon {
     color: #666;
     font-size: 0.9rem;
+  }
+  
+  .checklist-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-header h4 {
+    color: #333;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  
+  .edit-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .edit-mode-toggle {
+    display: none;
+  }
+  
+  .toggle-slider {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background: #ddd;
+    border-radius: 20px;
+    transition: 0.3s;
+  }
+  
+  .toggle-slider:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+  }
+  
+  .edit-mode-toggle:checked + .toggle-slider {
+    background: #4285f4;
+  }
+  
+  .edit-mode-toggle:checked + .toggle-slider:before {
+    transform: translateX(20px);
+  }
+  
+  .toggle-label {
+    font-size: 0.9rem;
+    color: #666;
   }
   
   .checklist-items {
@@ -196,38 +233,14 @@
     background: white;
     padding: 1.25rem;
     border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: relative;
-    overflow: hidden;
+    border: 1px solid #eee;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
   }
   
-  .checklist-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    transition: background-color 0.3s;
-  }
-  
-  .checklist-item[data-status="non"]::before {
-    background-color: #ff6b6b;
-  }
-  
-  .checklist-item[data-status="oui"]::before {
-    background-color: #51cf66;
-  }
-  
-  .checklist-item[data-status="non-evalue"]::before {
-    background-color: #adb5bd;
-  }
-  
-  .item-header {
-    margin-bottom: 1rem;
-    color: #333;
-    font-size: 0.95rem;
-    line-height: 1.4;
+  .item-content {
+    flex: 1;
   }
   
   .item-status {
@@ -241,21 +254,9 @@
     margin-bottom: 0.75rem;
   }
   
-  .item-status::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    border-radius: 3px;
-    flex-shrink: 0;
-  }
-  
   .item-status.non {
     background: #fff5f5;
     color: #ff6b6b;
-  }
-  
-  .item-status.non::before {
-    background-color: #ff6b6b;
   }
   
   .item-status.oui {
@@ -263,17 +264,16 @@
     color: #51cf66;
   }
   
-  .item-status.oui::before {
-    background-color: #51cf66;
-  }
-  
   .item-status.non-evalue {
     background: #f8f9fa;
     color: #adb5bd;
   }
   
-  .item-status.non-evalue::before {
-    background-color: #adb5bd;
+  .item-header {
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
   }
   
   .item-actions {
@@ -285,8 +285,7 @@
   .action-btn {
     flex: 1;
     min-width: 90px;
-    min-height: 44px;
-    padding: 0.75rem 0.5rem;
+    padding: 0.75rem;
     border: none;
     border-radius: 8px;
     display: flex;
@@ -294,29 +293,9 @@
     justify-content: center;
     gap: 0.5rem;
     cursor: pointer;
-    transition: all 0.2s;
     font-size: 0.9rem;
     font-weight: 500;
-    -webkit-tap-highlight-color: transparent;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .action-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  
-  .action-btn svg {
-    width: 16px;
-    height: 16px;
+    transition: all 0.2s;
   }
   
   .action-btn.non {
@@ -334,28 +313,15 @@
     color: #666;
   }
   
-  /* Style actif pour le tactile */
-  @media (hover: none) {
-    .action-btn:active {
-      transform: scale(0.96);
-      opacity: 0.8;
-    }
-  }
-  
-  .action-btn.active {
-    transform: scale(0.98);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .action-btn.active::before {
-    opacity: 1;
+  .action-btn svg {
+    width: 16px;
+    height: 16px;
   }
   
   .media-actions {
     display: none;
     gap: 0.5rem;
     margin-top: 1rem;
-    flex-wrap: wrap;
   }
   
   .media-actions.visible {
@@ -364,121 +330,92 @@
   
   .media-btn {
     flex: 1;
-    min-width: 120px;
-    min-height: 44px; /* Pour iOS */
-    background: #e7f5ff;
-    border: none;
     padding: 0.75rem;
+    border: none;
     border-radius: 8px;
+    background: #e7f5ff;
     color: #339af0;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
-    transition: background-color 0.2s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  /* Style actif pour le tactile */
-  @media (hover: none) {
-    .media-btn:active {
-      background: #d0ebff;
-      transform: scale(0.96);
-    }
-  }
-  
-  .item-comment {
-    margin-top: 1rem;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    display: flex;
-    gap: 0.75rem;
-    color: #495057;
-    font-size: 0.9rem;
-  }
-  
-  .item-comment svg {
-    flex-shrink: 0;
-    margin-top: 0.2rem;
-    color: #339af0;
-  }
-  
-  .item-comment p {
-    margin: 0;
-    line-height: 1.5;
-    word-break: break-word;
-  }
-  
-  .item-photo {
-    margin-top: 1rem;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #f8f9fa;
-    max-width: 200px; /* Limite la largeur maximale */
-    margin-left: auto;
-    margin-right: auto;
     cursor: pointer;
-    transition: opacity 0.2s;
+    font-size: 0.9rem;
   }
   
-  .item-photo:active {
-    opacity: 0.8;
+  .edit-actions {
+    display: none;
+    gap: 0.5rem;
   }
   
-  .item-photo img {
-    width: 100%;
-    height: 150px; /* Hauteur fixe */
-    display: block;
-    object-fit: cover; /* Garde les proportions de l'image */
-    border: 1px solid #e9ecef;
+  .edit-actions.visible {
+    display: flex;
+    flex-direction: column;
   }
   
-  /* Ajustement pour les petits écrans */
-  @media (max-width: 480px) {
-    .item-photo {
-      max-width: 160px;
-    }
-    
-    .item-photo img {
-      height: 120px;
-    }
+  .edit-icon,
+  .delete-icon {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
   }
   
-  .validate-btn {
+  .edit-icon svg,
+  .delete-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+  }
+  
+  .edit-icon {
+    color: #4285f4;
+  }
+  
+  .delete-icon {
+    color: #dc3545;
+  }
+  
+  .validate-btn,
+  .add-item-btn {
     width: 100%;
     padding: 1rem;
-    background: #51cf66;
-    color: white;
     border: none;
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    margin: 2rem 0;
-    transition: all 0.2s;
-    min-height: 44px; /* Pour iOS */
-    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
   }
   
-  .validate-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    display: none; /* Cache le bouton quand il est désactivé */
+  .validate-btn {
+    background: #51cf66;
+    color: white;
   }
   
-  /* Style actif pour le tactile */
-  @media (hover: none) {
-    .validate-btn:active {
-      transform: scale(0.98);
-      opacity: 0.9;
-    }
+  .add-item-btn {
+    background: #4285f4;
+    color: white;
+    display: none;
   }
   
-  /* Modal */
-  .comment-modal {
+  .add-item-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Modales */
+  .comment-modal,
+  .edit-item-modal,
+  .user-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -487,93 +424,78 @@
     bottom: 0;
     background: rgba(0,0,0,0.5);
     z-index: 1000;
-    align-items: flex-end;
     padding: 1rem;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    align-items: center;
   }
   
   .modal-content {
     background: white;
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 500px;
+    margin: auto;
     border-radius: 16px;
     overflow: hidden;
-    animation: slideUp 0.3s ease-out;
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-  
-  @keyframes slideUp {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
   }
   
   .modal-header {
     padding: 1rem;
+    border-bottom: 1px solid #eee;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #eee;
   }
   
   .modal-header h3 {
     margin: 0;
     font-size: 1.1rem;
     color: #333;
+    text-align: left;
   }
   
   .close-btn {
     background: none;
     border: none;
-    font-size: 1.5rem;
-    color: #666;
-    cursor: pointer;
     padding: 0.5rem;
-    margin: -0.5rem;
-    line-height: 1;
-    min-height: 44px;
-    min-width: 44px;
+    cursor: pointer;
+    color: #666;
     display: flex;
-    align-items: center;
-    justify-content: center;
   }
   
-  textarea {
-    width: 100%;
-    height: 150px;
+  .close-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .modal-body {
     padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    resize: none;
-    margin: 1rem;
-    width: calc(100% - 2rem);
-    font-size: 16px; /* Pour éviter le zoom sur iOS */
-    font-family: inherit;
-    -webkit-appearance: none;
-    appearance: none;
   }
   
   .modal-footer {
     padding: 1rem;
-    display: flex;
-    gap: 1rem;
     border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
   }
   
-  .modal-footer button {
-    flex: 1;
-    padding: 0.75rem;
+  .right-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .cancel-btn,
+  .save-btn,
+  .delete-btn,
+  .disconnect-btn {
+    padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.2s;
     min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .cancel-btn {
@@ -582,16 +504,55 @@
   }
   
   .save-btn {
-    background: #339af0;
+    background: #4285f4;
     color: white;
   }
   
-  /* Style actif pour le tactile */
-  @media (hover: none) {
-    .modal-footer button:active {
-      transform: scale(0.98);
-      opacity: 0.9;
-    }
+  .delete-btn {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .disconnect-btn {
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    background: #4285f4;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .user-info {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #666;
+  }
+  
+  .user-info p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .item-photo {
+    margin-top: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f9fa;
+    width: 100%;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    border: 1px solid #e9ecef;
+  }
+  
+  .item-photo:active {
+    opacity: 0.8;
+  }
+  
+  .item-photo img {
+    width: 100%;
+    height: 200px;
+    display: block;
+    object-fit: cover;
   }
   
   /* Photo viewer */
@@ -602,57 +563,51 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0,0,0,0.9);
     z-index: 2000;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    padding: 1rem;
   }
   
   .photo-viewer.visible {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   
   .photo-viewer img {
-    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-width: 95%;
     max-height: 90vh;
     object-fit: contain;
     border-radius: 8px;
   }
   
-  .photo-viewer .close-photo {
+  .close-photo {
     position: absolute;
-    top: max(1rem, env(safe-area-inset-top));
+    top: 1rem;
     right: 1rem;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255,255,255,0.2);
     border: none;
-    color: white;
     width: 44px;
     height: 44px;
     border-radius: 50%;
+    color: white;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
   }
   
-  .photo-viewer .close-photo svg {
-    width: 24px;
-    height: 24px;
-    stroke-width: 2;
-  }
-  
-  /* Media Queries */
+  /* Responsive */
   @media (max-width: 480px) {
-    .header {
-      padding: 0.75rem;
+    .content {
+      padding: 1rem;
     }
   
-    .content {
-      padding: 0.75rem;
+    .date-section,
+    .checklist-section {
+      padding: 1rem;
     }
   
     .checklist-item {
@@ -660,191 +615,70 @@
     }
   
     .action-btn {
-      padding: 0.6rem 0.5rem;
-      font-size: 0.85rem;
-    }
-  
-    .media-btn {
       padding: 0.6rem;
       font-size: 0.85rem;
     }
   
-    .item-comment {
-      padding: 0.75rem;
+    .item-photo img {
+      height: 180px;
+    }
+    
+    .photo-viewer {
+      padding: 0.5rem;
+    }
+    
+    .photo-viewer img {
+      max-width: 98%;
     }
   
-    .modal-content {
-      border-radius: 16px 16px 0 0;
+    .user-modal {
+      padding: 0.5rem;
+    }
+  
+    .user-modal .modal-content {
+      margin: 0.5rem;
+    }
+  
+    .user-info {
+      padding: 1.5rem 1rem;
+    }
+  
+    .disconnect-btn {
+      width: calc(100% - 1rem);
+      margin: 0.5rem;
+      padding: 0.875rem;
+      font-size: 0.95rem;
     }
   }
   
-  /* Support tablette */
-  @media (min-width: 481px) and (max-width: 1024px) {
-    .date-inputs {
-      flex-direction: row;
-      align-items: center;
-    }
-  
-    .input-group {
-      flex: 1;
-    }
-  
-    .action-btn {
-      min-width: 120px;
-    }
-  }
-  
-  /* Support desktop */
-  @media (min-width: 1025px) {
+  @media (min-width: 768px) {
     .app {
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
       margin: 2rem auto;
       min-height: calc(100vh - 4rem);
       border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
   
     .header {
       border-radius: 16px 16px 0 0;
     }
   
-    .action-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-  
-    .media-btn:hover {
-      background: #d0ebff;
-    }
-  
-    .validate-btn:not(:disabled):hover {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-  }
-  
-  /* Styles spécifiques pour Safari sur iOS */
-  @supports (-webkit-touch-callout: none) {
-    .app {
-      min-height: -webkit-fill-available;
-    }
-  
-    input,
-    textarea {
-      border-radius: 8px !important;
-    }
-  }
-  
-  /* Ajout des styles pour le modal utilisateur */
-  .user-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.95);
-    z-index: 1000;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  }
-  
-  .user-modal .modal-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    animation: fadeIn 0.3s ease-out;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .user-modal .modal-header {
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: none;
-  }
-  
-  .user-modal .modal-header h3 {
-    margin: 0;
-    font-size: 1.25rem;
-    color: #1a237e;
-    font-weight: 600;
-  }
-  
-  .user-modal .close-btn {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    color: #666;
-  }
-  
-  .user-modal .close-btn svg {
-    width: 24px;
-    height: 24px;
-    stroke-width: 1.5;
-  }
-  
-  .user-modal .user-info {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .user-modal .user-info p {
-    font-size: 1.1rem;
-    color: #333;
-    line-height: 1.6;
-    max-width: 80%;
-  }
-  
-  .user-modal .disconnect-btn {
-    margin: 1rem;
-    padding: 1rem;
-    background: #4285f4;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    margin-bottom: env(safe-area-inset-bottom);
-  }
-  
-  .user-modal .disconnect-btn:active {
-    background: #3367d6;
-  }
-  
-  .user-icon {
-    cursor: pointer;
-  }
-  
-  /* Support des appareils tactiles */
-  @media (hover: none) {
-    .user-modal .disconnect-btn:active {
-      background: #3367d6;
-    }
-  }
-  
-  /* Ajustements pour les petits écrans */
-  @media (max-width: 480px) {
-    .user-modal .modal-header {
-      padding: 1rem;
+    .item-photo {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
-    .user-modal .user-info p {
-      font-size: 1rem;
+    .item-photo img {
+      height: 250px;
+    }
+  
+    .user-modal .modal-content {
+      min-width: 400px;
+    }
+  
+    .disconnect-btn {
+      width: calc(100% - 3rem);
+      margin: 1.5rem;
     }
   }

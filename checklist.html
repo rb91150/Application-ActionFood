@@ -54,13 +54,27 @@
       </div>
 
       <div class="checklist-section">
-        <h4>Points de contrôle</h4>
+        <div class="section-header">
+          <h4>Points de contrôle</h4>
+          <label class="edit-toggle">
+            <input type="checkbox" class="edit-mode-toggle">
+            <span class="toggle-slider"></span>
+            <span class="toggle-label">Mode édition</span>
+          </label>
+        </div>
         <div class="checklist-items">
           <!-- Les items seront générés par JavaScript -->
         </div>
       </div>
 
-      <button class="validate-btn" disabled>Valider les contrôles</button>
+      <button class="validate-btn">Valider les contrôles</button>
+      <button class="add-item-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        Ajouter un point de contrôle
+      </button>
     </main>
 
     <div class="comment-modal">
@@ -77,6 +91,30 @@
       </div>
     </div>
 
+    <div class="edit-item-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Modifier le point de contrôle</h3>
+          <button class="close-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="edit-item-input" placeholder="Intitulé du point de contrôle">
+        </div>
+        <div class="modal-footer">
+          <button class="delete-btn">Supprimer</button>
+          <div class="right-buttons">
+            <button class="cancel-btn">Annuler</button>
+            <button class="save-btn">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="user-modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -89,7 +127,7 @@
           </button>
         </div>
         <div class="user-info">
-          <p>Vous êtes actuellement connecté en tant que sur Monsieur X</p>
+          <p>Vous êtes actuellement connecté en tant que Monsieur X</p>
         </div>
         <button class="disconnect-btn">Déconnexion</button>
       </div>
