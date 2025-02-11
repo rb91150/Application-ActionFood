@@ -24,20 +24,32 @@ body {
     z-index: 10;
 }
 
+.left-section {
+    width: 40px;
+}
+
 .back-button {
     background: none;
     border: none;
     color: white;
     cursor: pointer;
     padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .title {
     font-size: 1.25rem;
     font-weight: normal;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align: center;
+    flex: 1;
+}
+
+.right-section {
+    width: 80px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .header-icons {
@@ -83,12 +95,6 @@ main {
     justify-content: center;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.2s;
-}
-
-.help-icon:hover {
-    background: #3a8ae6;
-    transform: scale(1.1);
 }
 
 .date-time-section {
@@ -132,21 +138,9 @@ main {
     color: #4B9BFF;
 }
 
-.lock {
-    color: #98E2BB;
-    pointer-events: none;
-    user-select: none;
-}
-
 /* Zone List */
 .zone-list {
     padding: 1.5rem 1rem;
-}
-
-.zone-list > p {
-    color: #6c757d;
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
 }
 
 .zone-header {
@@ -160,47 +154,6 @@ main {
     color: #495057;
     font-size: 1.25rem;
     font-weight: normal;
-}
-
-.toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.toggle-label {
-    color: #6c757d;
-    font-size: 0.875rem;
-}
-
-.toggle {
-    width: 48px;
-    height: 24px;
-    background: #e9ecef;
-    border-radius: 12px;
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.toggle-handle {
-    width: 20px;
-    height: 20px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    transition: transform 0.2s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.toggle.active {
-    background: #4B9BFF;
-}
-
-.toggle.active .toggle-handle {
-    transform: translateX(24px);
 }
 
 .zones {
@@ -224,10 +177,6 @@ main {
     box-shadow: 0 2px 4px rgba(75, 155, 255, 0.1);
 }
 
-.zone-item .zone-header {
-    margin: 0;
-}
-
 .zone-name {
     color: #495057;
     font-size: 1rem;
@@ -238,87 +187,9 @@ main {
     margin-left: 0.5rem;
 }
 
-.zone-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.zone-actions button {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    color: #6c757d;
-    border-radius: 4px;
-}
-
-.zone-actions button:hover {
-    background: #f8f9fa;
-    color: #4B9BFF;
-}
-
-.add-zone {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: #4B9BFF;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.75rem;
-    width: 100%;
-    font-size: 0.875rem;
-    transition: all 0.2s;
-}
-
-.add-zone:hover {
-    background: #f8f9fa;
-    border-radius: 8px;
-    transform: translateY(-1px);
-}
-
-.add-zone span:first-child {
-    font-size: 1.5rem;
-    line-height: 1;
-    font-weight: bold;
-}
-
-/* Zone Detail */
+/* Posts List */
 .zone-detail {
     padding: 1.5rem 1rem;
-}
-
-.zone-detail .zone-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.zone-detail h2 {
-    color: #495057;
-    font-size: 1.25rem;
-    margin: 0;
-}
-
-.zone-detail .zone-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.zone-detail .zone-actions button {
-    background: #f8f9fa;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 6px;
-    cursor: pointer;
-    color: #6c757d;
-    transition: all 0.2s;
-}
-
-.zone-detail .zone-actions button:hover {
-    background: #e9ecef;
-    color: #4B9BFF;
 }
 
 .posts-list {
@@ -337,7 +208,6 @@ main {
 }
 
 .post-item.checked {
-    background: #f8f9fa;
     border-color: #98E2BB;
 }
 
@@ -345,7 +215,6 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.75rem;
 }
 
 .post-checkbox {
@@ -390,13 +259,6 @@ main {
 .post-actions {
     display: flex;
     gap: 0.5rem;
-    margin-top: 0.75rem;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-.post-item.checked .post-actions {
-    opacity: 1;
 }
 
 .post-actions button {
@@ -419,11 +281,6 @@ main {
     color: #4B9BFF;
 }
 
-.post-actions button svg {
-    width: 16px;
-    height: 16px;
-}
-
 .post-comment {
     margin-top: 0.75rem;
     padding: 0.75rem;
@@ -433,50 +290,58 @@ main {
     font-size: 0.875rem;
 }
 
-.validate-zone {
-    width: 100%;
-    padding: 1rem;
-    background: #98E2BB;
-    color: white;
+/* Photos */
+.post-photos {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 0;
+    margin-top: 8px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.post-photo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    flex-shrink: 0;
+}
+
+/* Zone Actions */
+.zone-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.zone-actions button {
+    flex: 1;
+    padding: 0.75rem;
     border: none;
     border-radius: 8px;
-    font-size: 1.125rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.2s;
 }
 
-.validate-zone:disabled {
-    background: #e9ecef;
-    color: #adb5bd;
-    cursor: not-allowed;
-}
-
-.validate-zone:not(:disabled):hover {
-    background: #7ed4a2;
-}
-
-.add-post {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: #4B9BFF;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.75rem;
-    width: 100%;
-    font-size: 0.875rem;
-    margin-bottom: 1.5rem;
-}
-
-.add-post:hover {
+.cancel-button {
     background: #f8f9fa;
-    border-radius: 8px;
+    color: #6c757d;
 }
 
-.add-post span:first-child {
-    font-size: 1.5rem;
-    line-height: 1;
+.cancel-button:hover {
+    background: #e9ecef;
+}
+
+.validate-button {
+    background: #4B9BFF;
+    color: white;
+}
+
+.validate-button:hover {
+    background: #3a8ae6;
 }
 
 /* Footer */
@@ -515,112 +380,6 @@ footer {
     background: #7ed4a2;
 }
 
-/* Modals */
-.zone-modal, .post-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    z-index: 20;
-}
-
-.modal {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    width: 100%;
-    max-width: 400px;
-    margin: 1rem;
-}
-
-.modal h3 {
-    color: #495057;
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
-}
-
-.modal-input {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    border-bottom: 1px solid #e9ecef;
-    padding: 0.75rem 0;
-    margin-bottom: 1.5rem;
-}
-
-.modal-input input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-}
-
-.modal-actions {
-    display: flex;
-    gap: 1rem;
-}
-
-.modal-actions button {
-    flex: 1;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.modal-actions .cancel {
-    background: #f8f9fa;
-    color: #6c757d;
-}
-
-.modal-actions .save {
-    background: #4B9BFF;
-    color: white;
-}
-
-/* Help Modal */
-.help-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    z-index: 1000;
-}
-
-.help-content {
-    padding: 1rem 0;
-    color: #495057;
-}
-
-.help-content h4 {
-    color: #4B9BFF;
-    margin: 1rem 0 0.5rem 0;
-    font-size: 1rem;
-}
-
-.help-content ol, .help-content ul {
-    margin: 0.5rem 0;
-    padding-left: 1.5rem;
-}
-
-.help-content li {
-    margin: 0.5rem 0;
-    line-height: 1.4;
-}
-
 /* Responsive Design */
 @media (max-width: 480px) {
     .date-time-section {
@@ -631,33 +390,12 @@ footer {
         padding: 0.75rem;
     }
 
-    .date label, .time label {
-        min-width: 50px;
-        font-size: 0.875rem;
-    }
-
-    .icon {
-        font-size: 1rem;
-    }
-
     .zone-item {
         padding: 0.75rem;
     }
 
     .zone-name {
         font-size: 0.875rem;
-    }
-
-    .modal {
-        margin: 0.5rem;
-    }
-
-    .modal-actions {
-        flex-direction: column;
-    }
-
-    .modal-actions button {
-        width: 100%;
     }
 
     .post-item {
