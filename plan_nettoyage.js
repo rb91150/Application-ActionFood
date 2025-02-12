@@ -2,6 +2,7 @@
 let state = {
     currentPage: 'main',
     currentZone: null,
+    isEditing: false,
     zones: [
         {
             id: 'a',
@@ -47,7 +48,228 @@ function saveState() {
 function loadState() {
     const savedState = localStorage.getItem('cleaningAppState');
     if (savedState) {
-        state = JSON.parse(savedState);
+        const parsedState = JSON.parse(savedState);
+        // Toujours démarrer sur la page principale
+        state = {
+            ...parsedState,
+            currentPage: 'main',
+            currentZone: null,
+            isEditing: false
+        };
+    }
+}
+
+// Fonction pour ajouter une zone
+function handleAddZone() {
+    const modal = document.querySelector('.zone-modal');
+    const input = modal.querySelector('input');
+    const saveButton = modal.querySelector('.save');
+    const cancelButton = modal.querySelector('.cancel');
+
+    modal.style.display = 'flex';
+    input.value = '';
+
+    const handleSave = () => {
+        const name = input.value.trim();
+        if (name) {
+            state.zones.push({
+                id: Date.now().toString(),
+                name,
+                completed: false,
+                posts: []
+            });
+            saveState();
+            renderPage();
+        }
+        modal.style.display = 'none';
+    };
+
+    const handleCancel = () => {
+        modal.style.display = 'none';
+    };
+
+    saveButton.onclick = handleSave;
+    cancelButton.onclick = handleCancel;
+}
+
+// Fonction pour supprimer une zone
+function handleDeleteZone(zoneId) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette zone ?')) {
+        state.zones = state.zones.filter(zone => zone.id !== zoneId);
+        saveState();
+        renderPage();
+    }
+}
+
+// Fonction pour renommer une zone
+function handleRenameZone(zoneId) {
+    const zone = state.zones.find(z => z.id === zoneId);
+    if (!zone) return;
+
+    const newName = prompt('Nouveau nom de la zone:', zone.name);
+    if (newName && newName.trim()) {
+        state.zones = state.zones.map(z => {
+            if (z.id === zoneId) {
+                return { ...z, name: newName.trim() };
+            }
+            return z;
+        });
+        saveState();
+        renderPage();
+    }
+}
+
+// Fonction pour revenir à la page principale
+function handleBack() {
+    if (state.currentPage === 'zone') {
+        // Si on est dans la page "Liste des postes", on revient à la page principale "Plan de nettoyage"
+        state.currentPage = 'main';
+        state.currentZone = null;
+        renderPage();
+        updateHeader();
+    } else {
+        // Si on est déjà sur la page principale, on redirige vers index.html
+        window.location.href = "index.html";
+    }
+}
+
+
+// Fonction pour valider une zone
+function handleValidateZone() {
+    if (state.currentZone) {
+        const hasCheckedPosts = state.currentZone.posts.some(post => post.checked);
+        state.zones = state.zones.map(zone => {
+            if (zone.id === state.currentZone.id) {
+                return { ...zone, completed: hasCheckedPosts };
+            }
+            return zone;
+        });
+        saveState();
+    }
+    handleBack();
+}
+
+// Fonction pour mettre à jour le titre du header
+function updateHeader() {
+    const titleElement = document.querySelector('.title');
+    if (titleElement) {
+        titleElement.textContent = state.currentPage === 'main' 
+            ? 'Plan de nettoyage'
+            : `${state.currentZone?.name || ''} - Liste des postes`;
+    }
+}
+
+// Fonction pour gérer le toggle d'édition
+function handleEditToggle(e) {
+    state.isEditing = e.target.checked;
+    renderPage();
+}
+
+// Fonction pour supprimer un poste
+function handleDeletePost(postId) {
+    if (!state.currentZone) return;
+    
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce poste ?')) {
+        state.zones = state.zones.map(zone => {
+            if (zone.id === state.currentZone.id) {
+                return {
+                    ...zone,
+                    posts: zone.posts.filter(post => post.id !== postId)
+                };
+            }
+            return zone;
+        });
+        
+        state.currentZone = state.zones.find(z => z.id === state.currentZone.id) || null;
+        saveState();
+        renderPage();
+    }
+}
+
+// Fonction pour renommer un poste
+function handleRenamePost(postId) {
+    if (!state.currentZone) return;
+    
+    const post = state.currentZone.posts.find(p => p.id === postId);
+    if (!post) return;
+
+    const newName = prompt('Nouveau nom du poste:', post.name);
+    if (newName && newName.trim()) {
+        state.zones = state.zones.map(zone => {
+            if (zone.id === state.currentZone.id) {
+                return {
+                    ...zone,
+                    posts: zone.posts.map(p => {
+                        if (p.id === postId) {
+                            return { ...p, name: newName.trim() };
+                        }
+                        return p;
+                    })
+                };
+            }
+            return zone;
+        });
+        
+        state.currentZone = state.zones.find(z => z.id === state.currentZone.id) || null;
+        saveState();
+        renderPage();
+    }
+}
+
+// Fonction pour ajouter un nouveau poste
+function handleAddPost() {
+    const modal = document.querySelector('.post-modal');
+    const input = modal.querySelector('input');
+    const saveButton = modal.querySelector('.save');
+    const cancelButton = modal.querySelector('.cancel');
+
+    modal.style.display = 'flex';
+    input.value = '';
+
+    const handleSave = () => {
+        const name = input.value.trim();
+        if (name && state.currentZone) {
+            state.zones = state.zones.map(zone => {
+                if (zone.id === state.currentZone.id) {
+                    return {
+                        ...zone,
+                        posts: [...zone.posts, {
+                            id: Date.now().toString(),
+                            name,
+                            checked: false,
+                            comments: '',
+                            photos: []
+                        }]
+                    };
+                }
+                return zone;
+            });
+            
+            state.currentZone = state.zones.find(z => z.id === state.currentZone.id) || null;
+            saveState();
+            renderPage();
+        }
+        modal.style.display = 'none';
+    };
+
+    const handleCancel = () => {
+        modal.style.display = 'none';
+    };
+
+    saveButton.onclick = handleSave;
+    cancelButton.onclick = handleCancel;
+}
+
+// Fonction pour gérer le clic sur une zone
+function handleZoneClick(event) {
+    if (state.isEditing) return;
+    
+    const zoneId = event.currentTarget.dataset.id;
+    if (zoneId) {
+        state.currentZone = state.zones.find(z => z.id === zoneId) || null;
+        state.currentPage = 'zone';
+        renderPage();
+        updateHeader();
     }
 }
 
@@ -57,13 +279,32 @@ function renderMainPage() {
     if (!main) return;
 
     const zonesList = state.zones.map(zone => `
-        <div class="zone-item" data-id="${zone.id}">
+        <div class="zone-item" data-id="${zone.id}" onclick="handleZoneClick(event)">
             <div class="zone-header">
                 <span class="zone-name">${zone.name}</span>
                 ${zone.completed ? '<span class="zone-check">✓</span>' : ''}
+                ${state.isEditing ? `
+                    <div class="zone-edit-actions">
+                        <button class="edit-btn" onclick="event.stopPropagation(); handleRenameZone('${zone.id}')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/>
+                            </svg>
+                        </button>
+                        <button class="delete-btn" onclick="event.stopPropagation(); handleDeleteZone('${zone.id}')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 6h18"/>
+                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                            </svg>
+                        </button>
+                    </div>
+                ` : ''}
             </div>
         </div>
     `).join('');
+
+    const today = new Date().toISOString().split('T')[0];
+    const now = new Date().toTimeString().slice(0, 5);
 
     main.innerHTML = `
         <div class="action-date">
@@ -74,35 +315,39 @@ function renderMainPage() {
             <div class="date-time-section">
                 <div class="date">
                     <span class="icon">📅</span>
-                    <input type="date" id="cleaning-date">
+                    <input type="date" id="cleaning-date" value="${today}">
                 </div>
                 <div class="time">
                     <span class="icon">⏰</span>
-                    <input type="time" id="cleaning-time">
+                    <input type="time" id="cleaning-time" value="${now}">
                 </div>
             </div>
         </div>
         <div class="zone-list">
             <div class="zone-header">
                 <h2>Liste des zones à nettoyer</h2>
+                <div class="edit-toggle">
+                    <span>Modifier</span>
+                    <label class="switch">
+                        <input type="checkbox" ${state.isEditing ? 'checked' : ''} onchange="handleEditToggle(event)">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </div>
             <div class="zones">
                 ${zonesList}
             </div>
+            <button class="add-zone-button" onclick="handleAddZone()">
+                <span>+</span>
+                <span>Ajouter une zone de nettoyage</span>
+            </button>
         </div>
+        <footer>
+            <button class="finish-button" ${!state.zones.some(zone => zone.completed) ? 'disabled' : ''}>
+                Terminer
+            </button>
+        </footer>
     `;
-
-    // Mettre à jour le titre et afficher le bouton retour
-    document.querySelector('.title').textContent = 'Plan de nettoyage';
-    document.querySelector('.back-button').style.display = 'block';
-    
-    // Configuration du bouton retour pour la page principale
-    const backButton = document.querySelector('.back-button');
-    if (backButton) {
-        backButton.onclick = () => window.location.href = 'index.html';
-    }
-
-    setupZoneItems();
 }
 
 // Rendu de la page de zone
@@ -114,16 +359,31 @@ function renderZonePage() {
         <div class="post-item ${post.checked ? 'checked' : ''}" data-id="${post.id}">
             <div class="post-header">
                 <label class="post-checkbox">
-                    <input type="checkbox" ${post.checked ? 'checked' : ''}>
+                    <input type="checkbox" ${post.checked ? 'checked' : ''} onchange="handlePostCheck('${post.id}')" ${state.isEditing ? 'disabled' : ''}>
                     <span class="post-name">${post.name}</span>
                 </label>
-                ${post.checked ? `
+                ${state.isEditing ? `
+                    <div class="post-edit-actions">
+                        <button class="edit-btn" onclick="handleRenamePost('${post.id}')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3Z"/>
+                            </svg>
+                        </button>
+                        <button class="delete-btn" onclick="handleDeletePost('${post.id}')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 6h18"/>
+                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                            </svg>
+                        </button>
+                    </div>
+                ` : post.checked ? `
                     <div class="post-actions">
-                        <button class="photo-btn" data-id="${post.id}">
+                        <button class="photo-btn" onclick="handleAddPhoto('${post.id}')">
                             <span class="icon">📷</span>
                             Photo
                         </button>
-                        <button class="comment-btn" data-id="${post.id}">
+                        <button class="comment-btn" onclick="handleAddComment('${post.id}')">
                             <span class="icon">💬</span>
                             Commentaire
                         </button>
@@ -136,7 +396,12 @@ function renderZonePage() {
             ${post.photos.length > 0 ? `
                 <div class="post-photos">
                     ${post.photos.map((photo, index) => `
-                        <img src="${photo}" alt="Photo ${index + 1}" class="post-photo">
+                        <div class="post-photo-container">
+                            <img src="${photo}" alt="Photo ${index + 1}" class="post-photo" onclick="handlePhotoPreview('${photo}')">
+                            ${state.isEditing ? `
+                                <button class="delete-photo" onclick="handleDeletePhoto('${post.id}', ${index})">×</button>
+                            ` : ''}
+                        </div>
                     `).join('')}
                 </div>
             ` : ''}
@@ -145,115 +410,78 @@ function renderZonePage() {
 
     main.innerHTML = `
         <div class="zone-detail">
+            <div class="zone-header">
+                <h2>Liste des postes</h2>
+                <div class="edit-toggle">
+                    <span>Modifier</span>
+                    <label class="switch">
+                        <input type="checkbox" ${state.isEditing ? 'checked' : ''} onchange="handleEditToggle(event)">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
             <div class="posts-list">
                 ${postsList}
             </div>
+            <button class="add-zone-button" onclick="handleAddPost()">
+                <span>+</span>
+                <span>Ajouter un poste de nettoyage</span>
+            </button>
             <div class="zone-actions">
-                <button class="cancel-button">Annuler</button>
-                <button class="validate-button">Valider</button>
+                <button class="cancel-button" onclick="handleBack()">Annuler</button>
+                <button class="validate-button" onclick="handleValidateZone()">Valider</button>
             </div>
         </div>
     `;
+}
 
-    // Mettre à jour le titre et afficher le bouton retour
-    document.querySelector('.title').textContent = `${state.currentZone.name} - Liste des postes`;
-    document.querySelector('.back-button').style.display = 'block';
+// Gestion des photos
+function handlePhotoPreview(photoUrl) {
+    const modal = document.querySelector('.photo-preview-modal');
+    const image = modal.querySelector('.photo-preview-image');
+    const closeButton = modal.querySelector('.close-preview');
+
+    image.src = photoUrl;
+    modal.style.display = 'flex';
+
+    closeButton.onclick = () => {
+        modal.style.display = 'none';
+    };
+
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
+}
+
+function handleDeletePhoto(postId, photoIndex) {
+    if (!state.currentZone) return;
     
-    // Configuration du bouton retour pour la page de zone
-    const backButton = document.querySelector('.back-button');
-    if (backButton) {
-        backButton.onclick = () => {
-            state.currentPage = 'main';
-            state.currentZone = null;
-            renderPage();
-        };
-    }
-
-    setupPostCheckboxes();
-    setupZoneButtons();
-    setupPhotoButtons();
-    setupCommentButtons();
-}
-
-// Configuration des événements
-function setupZoneItems() {
-    const zoneItems = document.querySelectorAll('.zone-item');
-    zoneItems.forEach(item => {
-        item.onclick = () => {
-            const zoneId = item.dataset.id;
-            if (zoneId) {
-                state.currentZone = state.zones.find(z => z.id === zoneId) || null;
-                state.currentPage = 'zone';
-                renderPage();
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+        state.zones = state.zones.map(zone => {
+            if (zone.id === state.currentZone.id) {
+                return {
+                    ...zone,
+                    posts: zone.posts.map(post => {
+                        if (post.id === postId) {
+                            const newPhotos = [...post.photos];
+                            newPhotos.splice(photoIndex, 1);
+                            return { ...post, photos: newPhotos };
+                        }
+                        return post;
+                    })
+                };
             }
-        };
-    });
-}
-
-function setupPostCheckboxes() {
-    const checkboxes = document.querySelectorAll('.post-checkbox input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.onchange = (e) => {
-            const postItem = e.target.closest('.post-item');
-            const postId = postItem ? postItem.dataset.id : null;
-            if (postId) {
-                handlePostCheck(postId);
-            }
-        };
-    });
-}
-
-function setupZoneButtons() {
-    const cancelButton = document.querySelector('.cancel-button');
-    const validateButton = document.querySelector('.validate-button');
-
-    if (cancelButton) {
-        cancelButton.onclick = () => {
-            state.currentPage = 'main';
-            state.currentZone = null;
-            renderPage();
-        };
-    }
-
-    if (validateButton) {
-        validateButton.onclick = () => {
-            if (state.currentZone) {
-                const hasCheckedPosts = state.currentZone.posts.some(post => post.checked);
-                state.currentZone.completed = hasCheckedPosts;
-                saveState();
-            }
-            state.currentPage = 'main';
-            state.currentZone = null;
-            renderPage();
-        };
+            return zone;
+        });
+        
+        state.currentZone = state.zones.find(z => z.id === state.currentZone.id) || null;
+        saveState();
+        renderPage();
     }
 }
 
-function setupPhotoButtons() {
-    const photoButtons = document.querySelectorAll('.photo-btn');
-    photoButtons.forEach(button => {
-        button.onclick = () => {
-            const postId = button.dataset.id;
-            if (postId) {
-                handleAddPhoto(postId);
-            }
-        };
-    });
-}
-
-function setupCommentButtons() {
-    const commentButtons = document.querySelectorAll('.comment-btn');
-    commentButtons.forEach(button => {
-        button.onclick = () => {
-            const postId = button.dataset.id;
-            if (postId) {
-                handleAddComment(postId);
-            }
-        };
-    });
-}
-
-// Gestionnaires d'événements
 function handlePostCheck(postId) {
     if (!state.currentZone) return;
 
@@ -279,6 +507,8 @@ function handlePostCheck(postId) {
 }
 
 async function handleAddPhoto(postId) {
+    if (!state.currentZone) return;
+    
     try {
         const input = document.createElement('input');
         input.type = 'file';
@@ -286,32 +516,31 @@ async function handleAddPhoto(postId) {
         input.capture = 'environment';
         
         input.onchange = (e) => {
-            const files = e.target.files;
-            const file = files ? files[0] : null;
+            const file = e.target.files?.[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = () => {
                     const photoUrl = reader.result;
                     
                     state.zones = state.zones.map(zone => {
-                        if (zone.id === state.currentZone.id) {
+                        if (zone.id === state.currentZone?.id) {
                             return {
                                 ...zone,
-                                posts: zone.posts.map(post => {
-                                    if (post.id === postId) {
+                                posts: zone.posts.map(p => {
+                                    if (p.id === postId) {
                                         return {
-                                            ...post,
-                                            photos: [...post.photos, photoUrl]
+                                            ...p,
+                                            photos: [...p.photos, photoUrl]
                                         };
                                     }
-                                    return post;
+                                    return p;
                                 })
                             };
                         }
                         return zone;
                     });
 
-                    state.currentZone = state.zones.find(z => z.id === state.currentZone.id) || null;
+                    state.currentZone = state.zones.find(z => z.id === state.currentZone?.id) || null;
                     saveState();
                     renderPage();
                 };
@@ -328,7 +557,6 @@ async function handleAddPhoto(postId) {
 
 function handleAddComment(postId) {
     if (!state.currentZone) return;
-
     const post = state.currentZone.posts.find(p => p.id === postId);
     if (!post) return;
 
@@ -362,25 +590,17 @@ function renderPage() {
     } else {
         renderZonePage();
     }
+    updateHeader();
 }
 
 // Initialisation de l'application
 function initApp() {
     loadState();
     renderPage();
-
-    // Initialiser la date et l'heure actuelles
-    const now = new Date();
-    const dateInput = document.getElementById('cleaning-date');
-    const timeInput = document.getElementById('cleaning-time');
-    
-    if (dateInput) {
-        dateInput.value = now.toISOString().split('T')[0];
-    }
-    if (timeInput) {
-        timeInput.value = now.toTimeString().slice(0, 5);
-    }
 }
 
 // Démarrer l'application
 document.addEventListener('DOMContentLoaded', initApp);
+function handleFinish() {
+    window.location.href = "index.html"; 
+}

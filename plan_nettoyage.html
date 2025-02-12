@@ -11,26 +11,22 @@
         <!-- Header -->
         <header>
             <div class="top-bar">
-                <div class="left-section">
-                    <button class="back-button">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="m15 18-6-6 6-6"/>
-                        </svg>
-                    </button>
-                </div>
+                <button class="back-button" onclick="handleBack()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                </button>
                 <h1 class="title">Plan de nettoyage</h1>
-                <div class="right-section">
-                    <div class="header-icons">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-                            <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-                            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
-                        </svg>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
+                <div class="header-icons">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
                 </div>
             </div>
         </header>
@@ -40,12 +36,7 @@
             <!-- Le contenu sera généré dynamiquement par JavaScript -->
         </main>
 
-        <!-- Footer -->
-        <footer>
-            <button class="finish-button" disabled>Terminer</button>
-        </footer>
-
-        <!-- Modals -->
+        <!-- Modal d'ajout de zone -->
         <div class="zone-modal" style="display: none;">
             <div class="modal">
                 <h3>Ajouter une zone de nettoyage</h3>
@@ -62,6 +53,7 @@
             </div>
         </div>
 
+        <!-- Modal d'ajout de poste -->
         <div class="post-modal" style="display: none;">
             <div class="modal">
                 <h3>Ajouter un poste de nettoyage</h3>
@@ -75,6 +67,14 @@
                     <button class="cancel">Annuler</button>
                     <button class="save">Enregistrer</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Modal d'aperçu des photos -->
+        <div class="photo-preview-modal" style="display: none;">
+            <div class="photo-preview-content">
+                <button class="close-preview">&times;</button>
+                <img class="photo-preview-image" src="" alt="Aperçu de la photo">
             </div>
         </div>
     </div>
