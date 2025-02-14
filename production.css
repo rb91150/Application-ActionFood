@@ -1,151 +1,734 @@
-/* Barre supérieure */
-.top-bar {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+/* Header Styles */
+.header {
+    background: linear-gradient(to right, #4a90e2, #357abd);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-left, .header-right {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
+    gap: 1rem;
 }
 
 .back-button {
-    display: flex;
-    align-items: center;
     background: none;
     border: none;
     color: white;
-    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 
-.title {
+.header-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.user-icon {
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-icon svg {
+    stroke: #4a90e2;
+}
+
+/* Main Content Styles */
+.main-content {
     flex: 1;
-    text-align: center;
-    font-size: 18px;
-    margin: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: #f5f5f5;
 }
 
-.header-icons {
+/* Date Section */
+.date-section h2 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.date-container {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.date-label {
+    color: #666;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.5rem;
+    font-size: 0.9rem;
 }
 
-.header-icons .icon {
-    width: 24px;
-    height: 24px;
+.date-label svg {
+    color: #4a90e2;
 }
 
-/* Section Date */
-.date-section {
-    padding: 15px;
+.date-picker-container {
+    position: relative;
+    cursor: pointer;
 }
 
-.date-section label {
-    font-weight: bold;
+.date-value {
+    color: #4a90e2;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Calendar Styles */
+.calendar {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 8px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.calendar.show {
     display: block;
-    margin-bottom: 10px;
 }
 
-.date-field {
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-nav {
+    background: none;
+    border: none;
+    color: #4a90e2;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+
+#monthYear {
+    font-weight: 500;
+    color: #333;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.weekday {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+    padding: 0.5rem 0;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    color: #333;
 }
 
-.date-field .icon {
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-day.today {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.calendar-day.selected {
+    background-color: #357abd;
+    color: white;
+}
+
+.calendar-day.other-month {
+    color: #ccc;
+    pointer-events: none;
+}
+
+/* Service Section */
+.service-section h2 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.service-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    background: white;
+    border-radius: 8px;
+    padding: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.service-button {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.service-button.active {
+    background: #4a90e2;
+    border-color: #4a90e2;
+    color: white;
+}
+
+.service-button.active svg {
+    stroke: white;
+}
+
+.service-button svg {
+    stroke: #666;
     width: 20px;
     height: 20px;
 }
 
-.date-field input {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+.service-button span {
+    font-size: 0.8rem;
+    color: inherit;
 }
 
-/* Section Service */
-.service-section {
-    padding: 15px;
+/* Recipe Section */
+.recipe-section {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.service-options {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.service-btn {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
+.recipe-section h3 {
+    color: #666;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    font-size: 0.9rem;
     text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: white;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
 }
 
-.service-btn.active {
-    background-color: #007bff;
-    color: white;
+.modify-section {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-.service-btn .icon {
-    display: block;
-    margin: 0 auto 5px;
-    width: 24px;
+.has-recipes .modify-section {
+    display: flex;
+}
+
+.modify-section span {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.modify-toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
     height: 24px;
 }
 
-/* Section Recettes */
-.recipe-section {
-    padding: 15px;
+.modify-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
-.search-recipe {
+.modify-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.modify-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .modify-slider {
+    background-color: #4a90e2;
+}
+
+input:checked + .modify-slider:before {
+    transform: translateX(20px);
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem;
+    padding-right: 3.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background-color: #f5f5f5;
+}
+
+.add-button {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 10px;
+    justify-content: center;
 }
 
-.search-recipe input {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.add-recipe-btn {
-    padding: 10px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-}
-
-/* Bouton Prochaine étape */
-.next-step-btn {
-    display: block;
-    width: calc(100% - 30px);
-    margin: 20px auto;
-    padding: 15px;
-    font-size: 16px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.no-recipes {
     text-align: center;
-    transition: background-color 0.3s;
+    color: #666;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    padding: 2rem 1rem;
+    white-space: pre-line;
 }
 
-.next-step-btn:hover {
-    background-color: #218838;
+/* Recipe List */
+.recipe-list {
+    margin-bottom: 1rem;
+}
+
+.recipe-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recipe-item:last-child {
+    border-bottom: none;
+}
+
+.recipe-item:hover {
+    background-color: #f5f5f5;
+}
+
+.recipe-item.selected {
+    background-color: #e3f2fd;
+}
+
+.recipe-item.edit-mode {
+    cursor: default;
+}
+
+.recipe-content {
+    flex: 1;
+}
+
+.recipe-controls {
+    display: none;
+    gap: 0.5rem;
+    opacity: 0.7;
+}
+
+.edit-mode .recipe-controls {
+    display: flex;
+}
+
+.recipe-control-btn {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.recipe-control-btn:hover {
+    color: #4a90e2;
+}
+
+.recipe-control-btn.delete-btn:hover {
+    color: #dc3545;
+}
+
+.recipe-selection-indicator {
+    width: 24px;
+    height: 24px;
+    color: #4a90e2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    display: block;
+}
+
+.recipe-item.selected .recipe-selection-indicator {
+    opacity: 1;
+}
+
+.edit-mode .recipe-selection-indicator {
+    display: none;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #333;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-help {
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.measure-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.measure-button {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.measure-button.active {
+    background: #4a90e2;
+    border-color: #4a90e2;
+    color: white;
+}
+
+.measure-button.active svg {
+    stroke: white;
+}
+
+.measure-inputs {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.measure-inputs input,
+.measure-inputs select,
+.form-group input {
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background-color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cancel-button,
+.save-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cancel-button {
+    background: white;
+    border: 1px solid #e0e0e0;
+    color: #666;
+}
+
+.save-button {
+    background: #4a90e2;
+    border: none;
+    color: white;
+}
+
+.save-button:hover {
+    background: #357abd;
+}
+
+/* Footer */
+.footer {
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+}
+
+.next-step-button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #4cd964;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.next-step-button:hover {
+    background: #3cbd53;
+}
+
+.next-step-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Product Selection Page */
+.product-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.product-categories {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+    background: white;
+    border-radius: 8px;
+    padding: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.category-button {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.category-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: #666;
+}
+
+.category-button.active {
+    background: #4a90e2;
+    border-color: #4a90e2;
+    color: white;
+}
+
+.category-button.active svg {
+    stroke: white;
+}
+
+.barcode-button {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.product-message {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #666;
+    line-height: 1.6;
+}
+
+.product-message p {
+    margin-bottom: 1rem;
+}
+
+.product-message p:last-child {
+    margin-bottom: 0;
+}
+
+.product-counter {
+    background: #4a4a4a;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
 }

@@ -3,85 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date de Production</title>
+    <title>Gestion des Recettes</title>
     <link rel="stylesheet" href="production.css">
 </head>
 <body>
-    <header>
-        <div class="top-bar">
-            <!-- Bouton retour aligné à gauche -->
-            <button class="back-button" onclick="window.location.href='index.html'">
-
-                <span>Retour</span>
+    <div class="app">
+        <header class="header">
+            <div class="header-left">
+                <button class="back-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5"></path>
+                        <path d="M12 19l-7-7 7-7"></path>
+                    </svg>
+                    Retour
+                </button>
+            </div>
+            <div class="header-center">
+                <h1 class="header-title">Production</h1>
+            </div>
+            <div class="header-right">
+                <div class="wifi-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                        <line x1="12" y1="20" x2="12" y2="20"></line>
+                    </svg>
+                </div>
+                <div class="user-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <main class="main-content">
+            <section class="date-section">
+                <h2>Date de production</h2>
+                <div class="date-container">
+                    <div class="date-label">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Date
+                    </div>
+                    <div class="date-picker-container">
+                        <div class="date-value" id="currentDate"></div>
+                        <div class="calendar" id="calendar">
+                            <div class="calendar-header">
+                                <button class="calendar-nav" id="prevMonth">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M15 18l-6-6 6-6"></path>
+                                    </svg>
+                                </button>
+                                <span id="monthYear"></span>
+                                <button class="calendar-nav" id="nextMonth">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 18l6-6-6-6"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="calendar-grid">
+                                <div class="weekday">L</div>
+                                <div class="weekday">M</div>
+                                <div class="weekday">M</div>
+                                <div class="weekday">J</div>
+                                <div class="weekday">V</div>
+                                <div class="weekday">S</div>
+                                <div class="weekday">D</div>
+                            </div>
+                            <div class="calendar-days" id="calendarDays"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="service-section">
+                <h2>Service</h2>
+                <div class="service-buttons">
+                    <button class="service-button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <span>Matin</span>
+                    </button>
+                    <button class="service-button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <span>Midi</span>
+                    </button>
+                    <button class="service-button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 18a5 5 0 0 0-10 0"></path>
+                            <line x1="12" y1="2" x2="12" y2="9"></line>
+                            <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+                            <line x1="1" y1="18" x2="3" y2="18"></line>
+                            <line x1="21" y1="18" x2="23" y2="18"></line>
+                            <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+                            <line x1="23" y1="22" x2="1" y2="22"></line>
+                            <polyline points="8 6 12 2 16 6"></polyline>
+                        </svg>
+                        <span>Soir</span>
+                    </button>
+                    <button class="service-button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <span>Nuit</span>
+                    </button>
+                </div>
+            </section>
+            <section class="recipe-section">
+                <h3>Sélectionnez une recette</h3>
+                <div class="modify-section">
+                    <span>Modifier</span>
+                    <label class="modify-toggle">
+                        <input type="checkbox">
+                        <span class="modify-slider"></span>
+                    </label>
+                </div>
+                <div class="search-container">
+                    <input type="text" placeholder="Rechercher une recette..." class="search-input">
+                    <button class="add-button">+</button>
+                </div>
+                <div class="no-recipes">
+                    Vous n'avez pas encore ajouté de recette.
+                    Cliquez sur le bouton + pour ajouter votre première recette.
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <button class="next-step-button" disabled>
+                Suivant
             </button>
+        </footer>
+    </div>
 
-            <!-- Titre centré -->
-            <h1 class="title">Production</h1>
-
-            <!-- Icônes alignées à droite -->
-            <div class="header-icons">
-                <!-- Placeholder pour votre propre icône Wi-Fi -->
-                <img src="wifi-transparent-1371033_640.webp" alt="Wi-Fi" class="icon">
-                <!-- Placeholder pour votre propre icône utilisateur -->
-                <img src="unnamed.png" alt="Utilisateur" class="icon">
+    <div class="modal" id="addRecipeModal">
+        <div class="modal-content">
+            <h2>Ajouter une recette</h2>
+            <div class="modal-form">
+                <div class="form-group">
+                    <label for="recipeName">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <line x1="10" y1="9" x2="8" y2="9"></line>
+                        </svg>
+                        Nom de la recette
+                    </label>
+                    <input type="text" id="recipeName" placeholder="Ex: Sauce Bolognaise">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
+                            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Mesure
+                    </label>
+                    <div class="measure-buttons">
+                        <button class="measure-button" data-type="weight">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.91 8.84 8.56 2.23a1.93 1.93 0 0 0-1.81 0L3.1 4.13a2.12 2.12 0 0 0-.05 3.69l12.22 6.93a2 2 0 0 0 1.94 0L21 12.51a2.12 2.12 0 0 0-.09-3.67Z"></path>
+                                <path d="m3.09 8.84 12.35-6.61a1.93 1.93 0 0 1 1.81 0l3.65 1.9a2.12 2.12 0 0 1 .1 3.69L8.73 14.75a2 2 0 0 1-1.94 0L3 12.51a2.12 2.12 0 0 1 .09-3.67Z"></path>
+                            </svg>
+                            Poids
+                        </button>
+                        <button class="measure-button" data-type="volume">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 3h6v11h4l-7 7-7-7h4z"></path>
+                            </svg>
+                            Volume
+                        </button>
+                    </div>
+                    <div class="measure-inputs">
+                        <input type="number" id="measureValue" class="hidden" placeholder="Quantité">
+                        <select id="measureUnit" class="hidden">
+                            <option value="">Unité</option>
+                        </select>
+                    </div>
+                    <p class="form-help">Optionnel</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="cancel-button">Annuler</button>
+                    <button class="save-button">Enregistrer</button>
+                </div>
             </div>
         </div>
-    </header>
-
-    <main>
-        <!-- Section Date -->
-        <section class="date-section">
-            <label for="date">Date de production</label>
-            <div class="date-field">
-                <span class="label-icon">
-                    <img src="unnamed.jpg" alt="Calendrier verrouillé" class="icon">
-                    Préparé le
-                </span>
-                <input type="date" id="date" value="2025-01-16">
-            </div>
-        </section>
-
-        <!-- Section Service -->
-        <section class="service-section">
-            <label>Service</label>
-            <div class="service-options">
-                <button class="service-btn" data-service="matin" onclick="selectService(this)">
-                    <img src="IMG_9517.jpeg" alt="Matin" class="icon">
-                    Matin
-                </button>
-                <button class="service-btn" data-service="midi" onclick="selectService(this)">
-                    <img src="IMG_9518.jpeg" alt="Midi" class="icon">
-                    Midi
-                </button>
-                <button class="service-btn active" data-service="soir" onclick="selectService(this)">
-                    <img src="IMG_9520.jpeg" alt="Soir" class="icon">
-                    Soir
-                </button>
-                <button class="service-btn" data-service="indifferent" onclick="selectService(this)">
-                    <img src="IMG_9519.jpeg" alt="Indifférent" class="icon">
-                    Indifférent
-                </button>
-            </div>
-        </section>
-
-        <!-- Section Recettes -->
-        <section class="recipe-section">
-            <p>Appuyez sur une recette pour la sélectionner</p>
-            <div class="search-recipe">
-                <input type="text" placeholder="Exemple : Boeuf Bourguignon, Paella, etc.">
-                <button class="add-recipe-btn">
-                    Ajouter
-                </button>
-            </div>
-            <div class="recipe-message">
-                <p>Vous n'avez créé aucune recette pour le moment.</p>
-                <p>Pour commencer à enregistrer des productions, vous devez créer au moins une recette en utilisant le bouton "ajouter une recette" ci-dessous.</p>
-            </div>
-        </section>
-
-        <!-- Bouton Prochaine étape -->
-        <button class="next-step-btn" onclick="prochaineEtape()">Prochaine étape</button>
-    </main>
+    </div>
 
     <script src="production.js"></script>
 </body>
